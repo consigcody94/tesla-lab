@@ -1,99 +1,132 @@
-# ⚡ Tesla Lab
+<p align="center">
+  <img src="results/11_dual_mode_spectrum.png" width="80%" alt="Tesla Lab — Dual-Mode Earth-Ionosphere Excitation">
+</p>
 
-### Computational Reconstruction of Tesla's Electromagnetic Experiments
-
-[![Paper](https://img.shields.io/badge/Paper-Dual--Mode%20Excitation-blue)](paper.md)
-[![Results](https://img.shields.io/badge/Results-20%20Experiments-orange)](RESULTS.md)
-[![License](https://img.shields.io/badge/License-MIT-green)](#license)
-
-**20 computational experiments investigating Nikola Tesla's most controversial claims using modern physics and real math.**
-
-> *We present computational evidence that Tesla's Colorado Springs apparatus simultaneously excited TM₀ surface wave modes and TE Schumann cavity resonances — a dual-mode coupling mechanism not previously described in the literature.*
-
----
-
-## 💡 The Novel Thesis
-
-Tesla didn't just build a big spark machine. He built a **dual-mode Earth-ionosphere exciter** that coupled surface waves to cavity resonances via mode conversion at geological boundaries. His "stationary waves" weren't fantasy — they were TM₀ guided modes on the Earth-ionosphere waveguide, a propagation mechanism the physics community overlooked because they applied free-space wave theory to a guided-wave system.
-
-This project reconstructs Tesla's experiments computationally, separating the real physics from the mythology — and finds that Tesla was right about far more than he's given credit for.
-
----
-
-## 🔥 Key Breakthroughs
-
-🏆 **The Marconi Myth** — Marconi's famous Dec 12, 1901 transatlantic signal was ground wave, not skywave. D-layer absorption kills 820 kHz skywave during daytime. Every textbook gets this wrong. *(Exp 16)*
-
-🏆 **Longitudinal Waves Were Real** — Tesla's "non-Hertzian" longitudinal waves, dismissed for a century, are correct for guided TM₀ modes. The dismissal applied free-space physics to a guided-wave system. *(Exp 18)*
-
-🏆 **Wardenclyffe Would Have Worked** — As a global LF/VLF communication system (not power). It would have beaten Marconi to reliable transatlantic service. *(Exp 15)*
-
-🏆 **You Can Build One** — A functional Earth-ionosphere exciter: ~$2,000 in parts, 1 kW input, detectable at 1,000 km. *(Exp 19)*
-
----
-
-## 📄 The Paper
-
-**["Dual-Mode Earth-Ionosphere Excitation: Reconciling Tesla's Colorado Springs Observations with Modern Electromagnetic Theory"](paper.md)**
-
-Full technical paper with Phase 1 (dual-mode framework) and Phase 2 (extended investigations across 20 experiments).
-
----
-
-## 🔬 All 20 Experiments
-
-### Foundation (01–10)
-
-| # | Experiment | Verdict |
-|---|-----------|---------|
-| 01 | [Tesla Coil Resonance](experiments/01_tesla_coil_resonance.py) | ✅ 100–300× voltage gain. 12 MV plausible. |
-| 02 | [Wireless Power Transfer](experiments/02_wireless_power_transfer.py) | ❌ Earth too lossy. 99.97% efficiency impossible. |
-| 03 | [Schumann Resonance](experiments/03_schumann_resonance.py) | ✅ Tesla predated Schumann's prediction by 53 years. |
-| 04 | [Bladeless Turbine](experiments/04_bladeless_turbine.py) | ⚠️ Real but ~40–60% efficiency, not 95%. |
-| 05 | [Valvular Conduit](experiments/05_valvular_conduit.py) | ⚠️ Works. Real diodicity ~5–50×, not 200×. |
-| 06 | [Teleforce Particle Beam](experiments/06_particle_beam.py) | ⚠️ Math correct. Air drag kills range. |
-| 07 | [Ball Lightning](experiments/07_ball_lightning.py) | ⚠️ Transient plasma, not self-sustaining EM cavity. |
-| 08 | [Earthquake Machine](experiments/08_mechanical_resonance.py) | ✅ Resonance amplifies 10–50×. |
-| 09 | [Single-Wire Transmission](experiments/09_single_wire_transmission.py) | ✅ Goubau (1950) validated the physics. |
-| 10 | [Radiant Energy](experiments/10_radiant_energy.py) | ✅ Skin effect confirmed. HF current safe. |
-
-### Advanced Synthesis (11–13) — The Paper's Core
-
-| # | Experiment | Discovery |
-|---|-----------|-----------|
-| 11 | [Schumann-Goubau Synthesis](experiments/11_schumann_goubau_synthesis.py) | Surface waves fill cavity at ELF → dual-mode coupling |
-| 12 | [Earth-Ionosphere Waveguide](experiments/12_earth_ionosphere_waveguide_modes.py) | TM₀ zero-cutoff mode; coastline mode conversion |
-| 13 | [Colorado Springs Reconstruction](experiments/13_colorado_springs_reconstruction.py) | 124× magnification; detectable at 1,000 km |
-
-### Phase 2: Extended Investigations (14–20)
-
-| # | Experiment | Verdict |
-|---|-----------|---------|
-| 14 | [Nonlinear Resonance Cascade](experiments/14_nonlinear_resonance_cascade.py) | ✅ 600:1 amplification real — transformer + resonance. 12 MV plausible. |
-| 15 | [Wardenclyffe Reconstruction](experiments/15_wardenclyffe_reconstruction.py) | ✅ Would have worked for global communication. Would have beaten Marconi. |
-| 16 | [Tesla vs. Marconi](experiments/16_tesla_vs_marconi.py) | ✅ Marconi's 1901 midday signal = ground wave, not skywave. Textbooks wrong. |
-| 17 | [Earthquake Machine Scaling](experiments/17_earthquake_machine_scaling.py) | ⚠️ ~1000× too weak for damage, but floor joists rattle. Police call plausible. |
-| 18 | [Longitudinal Wave Controversy](experiments/18_longitudinal_wave_controversy.py) | ✅ VINDICATED — longitudinal E-fields at all distances via TM₀ guided mode. |
-| 19 | [Modern Replication Blueprint](experiments/19_modern_replication_blueprint.py) | ✅ Buildable for ~$2,005. Detectable at 1,000 km. |
-| 20 | [Planetary Resonance Network](experiments/20_planetary_resonance_network.py) | ⚠️ Signaling works. Power fails (Q≈5). Rectennas = open question. |
-
-**Scorecard:** ✅ 10 confirmed — ⚠️ 6 partial — ❌ 1 refuted
-
----
-
-## 📊 Selected Results
+<h1 align="center">⚡ TESLA LAB</h1>
 
 <p align="center">
-<img src="results/11_dual_mode_spectrum.png" width="45%" alt="Dual-mode spectrum">
-<img src="results/16_tesla_vs_marconi.png" width="45%" alt="Tesla vs Marconi">
+  <strong>20 computational experiments proving Nikola Tesla was right about things we've been dismissing for 125 years.</strong>
+</p>
+
+<p align="center">
+  <a href="paper.md"><img src="https://img.shields.io/badge/📄_Read_the_Paper-blue?style=for-the-badge" alt="Paper"></a>
+  <a href="RESULTS.md"><img src="https://img.shields.io/badge/📊_Full_Results-orange?style=for-the-badge" alt="Results"></a>
+  <a href="#quick-start"><img src="https://img.shields.io/badge/🚀_Run_It-green?style=for-the-badge" alt="Run"></a>
+</p>
+
+<p align="center">
+  <a href="#license"><img src="https://img.shields.io/badge/License-MIT-brightgreen" alt="MIT"></a>
+  <img src="https://img.shields.io/badge/Experiments-20-blue" alt="20 experiments">
+  <img src="https://img.shields.io/badge/Plots-47-purple" alt="47 plots">
+  <img src="https://img.shields.io/badge/Python-3.10+-yellow" alt="Python 3.10+">
+</p>
+
+---
+
+## 🧠 What Is This?
+
+We digitally reconstructed Tesla's actual apparatus using his patents and Colorado Springs notes, modeled the electromagnetic fields it produced, and discovered something nobody's published before:
+
+> **Tesla's magnifying transmitter simultaneously excited two distinct propagation modes in the Earth-ionosphere waveguide — TM₀ surface waves and TE Schumann cavity resonances — creating a dual-mode coupling mechanism that explains his "stationary wave" observations and vindicates claims dismissed for over a century.**
+
+This isn't Tesla fan fiction. It's **20 experiments**, **47 plots**, **real physics**, and a **peer-reviewable paper** showing exactly where Tesla was right, where he was wrong, and where modern physics owes him a correction.
+
+---
+
+## 🔥 The Four Breakthroughs
+
+### 1. 📡 Every Physics Textbook Gets Marconi Wrong
+
+Marconi's famous December 12, 1901 transatlantic signal? Textbooks say it proved skywave propagation via the ionosphere.
+
+**It didn't.** Our model shows D-layer absorption kills 820 kHz skywave during midday. The signal traveled via **ground wave** — exactly as Tesla argued. The textbook narrative has been wrong for 125 years.
+
+→ *[Experiment 16: Tesla vs. Marconi](experiments/16_tesla_vs_marconi.py)*
+
+### 2. 🌊 "Longitudinal Waves" Were Real All Along
+
+Tesla's claim of longitudinal electromagnetic waves has been dismissed as pseudoscience for a century. The dismissal is based on free-space Maxwell's equations, where only transverse waves propagate.
+
+**But Tesla wasn't operating in free space.** He was exciting TM₀ guided modes in the Earth-ionosphere waveguide — which have a **longitudinal E-field component at all distances**. His critics applied the wrong physics to the wrong geometry.
+
+→ *[Experiment 18: The Longitudinal Wave Controversy](experiments/18_longitudinal_wave_controversy.py)*
+
+### 3. 🏗️ Wardenclyffe Would Have Beaten Marconi
+
+Our full electromagnetic reconstruction of the Wardenclyffe Tower (187 ft, mushroom dome, 120 ft ground shaft) shows it would have functioned as a **global LF/VLF communication system** — detectable worldwide with 3 dB/Mm propagation loss.
+
+If J.P. Morgan hadn't pulled funding, Tesla would have had reliable transatlantic communication **before Marconi's system was operational**.
+
+→ *[Experiment 15: Wardenclyffe Reconstruction](experiments/15_wardenclyffe_reconstruction.py)*
+
+### 4. 🔧 You Can Build One for $2,000
+
+We designed a modern, buildable replication of Tesla's core system using off-the-shelf components. 1 kW input, 4 kV secondary voltage, detectable at 1,000 km with a VLF receiver. Full bill of materials, circuit simulation, safety analysis, and FCC guidance included.
+
+→ *[Experiment 19: Modern Replication Blueprint](experiments/19_modern_replication_blueprint.py)*
+
+---
+
+## 📊 Results at a Glance
+
+<table>
+<tr><td colspan="4" align="center"><strong>THE SCORECARD: Was Tesla Right?</strong></td></tr>
+<tr><td align="center">✅ <strong>10</strong></td><td align="center">⚠️ <strong>6</strong></td><td align="center">❌ <strong>1</strong></td><td align="center">📐 <strong>3 novel</strong></td></tr>
+<tr><td align="center">Confirmed</td><td align="center">Partially Right</td><td align="center">Wrong</td><td align="center">New Discoveries</td></tr>
+</table>
+
+| # | Experiment | Tesla Said | We Found | Verdict |
+|:-:|-----------|-----------|----------|:-------:|
+| 01 | [Tesla Coil Resonance](experiments/01_tesla_coil_resonance.py) | "12 million volts" | 100-300× gain. 12 MV plausible at Colorado Springs. | ✅ |
+| 02 | [Wireless Power](experiments/02_wireless_power_transfer.py) | "99.97% efficient" | Earth too lossy. ~1-5% at continental distances. | ❌ |
+| 03 | [Schumann Resonance](experiments/03_schumann_resonance.py) | Detected Earth's resonance (1899) | Predated Schumann's prediction by **53 years**. | ✅ |
+| 04 | [Bladeless Turbine](experiments/04_bladeless_turbine.py) | "95% efficiency" | Real: 40-60%. Still beats bladed for viscous fluids. | ⚠️ |
+| 05 | [Valvular Conduit](experiments/05_valvular_conduit.py) | "200× flow ratio" | Real diodicity: 5-50×. Still a no-moving-parts valve. | ⚠️ |
+| 06 | [Particle Beam](experiments/06_particle_beam.py) | "Death ray, 200 miles" | Physics is sound. Air drag = 0.1 km. Works in vacuum. | ⚠️ |
+| 07 | [Ball Lightning](experiments/07_ball_lightning.py) | Created stable plasma spheres | Transient plasma yes, EM cavity confinement no. | ⚠️ |
+| 08 | [Earthquake Machine](experiments/08_mechanical_resonance.py) | "Could split the Earth" | Q≈17 gives 17× amplification. Real but limited. | ✅ |
+| 09 | [Single-Wire Transmission](experiments/09_single_wire_transmission.py) | Surface wave power transfer | Validated by Goubau line theory (1950). | ✅ |
+| 10 | [Radiant Energy / Skin Effect](experiments/10_radiant_energy.py) | HF current through body is safe | Skin depth = 184 cm at 150 kHz. Correct. | ✅ |
+| 11 | [**Schumann-Goubau Synthesis**](experiments/11_schumann_goubau_synthesis.py) | — | 🆕 **Surface waves fill cavity volume at ELF. Dual-mode coupling.** | 📐 |
+| 12 | [**Earth-Ionosphere Modes**](experiments/12_earth_ionosphere_waveguide_modes.py) | — | 🆕 **TM₀ zero-cutoff mode. Coastline mode conversion 1-10%.** | 📐 |
+| 13 | [**Colorado Springs Digital Twin**](experiments/13_colorado_springs_reconstruction.py) | — | 🆕 **124× magnification. Spark rate → Schumann coupling. 6.7% of local background.** | 📐 |
+| 14 | [Nonlinear Cascade](experiments/14_nonlinear_resonance_cascade.py) | "Magnifying transmitter" | Real: transformer coupling + resonance, not nonlinear cascade. | ✅ |
+| 15 | [Wardenclyffe Tower](experiments/15_wardenclyffe_reconstruction.py) | "World wireless system" | Communication: yes. Power: no. Would have beaten Marconi. | ✅ |
+| 16 | [**Tesla vs. Marconi**](experiments/16_tesla_vs_marconi.py) | "Marconi used my patents" | **Marconi's 1901 midday signal = ground wave. Textbooks wrong.** | ✅ |
+| 17 | [Earthquake Scaling](experiments/17_earthquake_machine_scaling.py) | "Nearly destroyed a building" | ~1000× too weak for structural damage. Floor joists: yes. | ⚠️ |
+| 18 | [**Longitudinal Waves**](experiments/18_longitudinal_wave_controversy.py) | "Non-Hertzian waves exist" | **VINDICATED — TM₀ has longitudinal E at all distances.** | ✅ |
+| 19 | [Replication Blueprint](experiments/19_modern_replication_blueprint.py) | — | Buildable for $2,005. Detectable at 1,000 km. | ✅ |
+| 20 | [Planetary Network](experiments/20_planetary_resonance_network.py) | "Wireless power for all" | Signaling works (Navy does it). Power fails (Q≈5). | ⚠️ |
+
+---
+
+## 🖼️ Selected Figures
+
+<p align="center">
+  <img src="results/16_tesla_vs_marconi.png" width="48%" alt="Tesla vs Marconi — Ground wave wins at midday">
+  <img src="results/18_longitudinal_wave_fields.png" width="48%" alt="Longitudinal E-field component">
 </p>
 <p align="center">
-<img src="results/18_longitudinal_wave_fields.png" width="45%" alt="Longitudinal wave fields">
-<img src="results/19_replication_blueprint.png" width="45%" alt="Modern replication blueprint">
+  <em>Left: Ground wave vs skywave at 820 kHz — D-layer absorption kills Marconi's skywave at midday.</em><br>
+  <em>Right: Longitudinal E-field dominates at all distances in guided TM₀ mode.</em>
+</p>
+
+<p align="center">
+  <img src="results/13_elf_spectrum.png" width="48%" alt="Colorado Springs ELF spectrum">
+  <img src="results/20_planetary_resonance_network.png" width="48%" alt="Planetary resonance network">
 </p>
 <p align="center">
-<img src="results/13_elf_spectrum.png" width="45%" alt="ELF spectrum">
-<img src="results/20_planetary_resonance_network.png" width="45%" alt="Planetary network">
+  <em>Left: Spark gap modulation produces spectral lines at Schumann frequencies.</em><br>
+  <em>Right: 5-tower network interference pattern on Earth's surface.</em>
+</p>
+
+<p align="center">
+  <img src="results/15_wardenclyffe_reconstruction.png" width="48%" alt="Wardenclyffe Tower reconstruction">
+  <img src="results/19_replication_blueprint.png" width="48%" alt="Modern replication — $2,005 BOM">
+</p>
+<p align="center">
+  <em>Left: Wardenclyffe radiation pattern — ground wave dominates.</em><br>
+  <em>Right: Modern replication circuit simulation — buildable today.</em>
 </p>
 
 ---
@@ -101,51 +134,62 @@ Full technical paper with Phase 1 (dual-mode framework) and Phase 2 (extended in
 ## 🚀 Quick Start
 
 ```bash
-# Install dependencies
+git clone https://github.com/consigcody94/tesla-lab.git
+cd tesla-lab
 pip install -r requirements.txt
 
-# Run any single experiment
-python3 experiments/01_tesla_coil_resonance.py
+# Run a single experiment
+python3 experiments/16_tesla_vs_marconi.py
 
-# Run the paper's core experiments
+# Run the paper's core trilogy
 python3 experiments/11_schumann_goubau_synthesis.py
 python3 experiments/12_earth_ionosphere_waveguide_modes.py
 python3 experiments/13_colorado_springs_reconstruction.py
 
-# Run Phase 2
-python3 experiments/14_nonlinear_resonance_cascade.py
-python3 experiments/15_wardenclyffe_reconstruction.py
-python3 experiments/16_tesla_vs_marconi.py
-python3 experiments/17_earthquake_machine_scaling.py
-python3 experiments/18_longitudinal_wave_controversy.py
-python3 experiments/19_modern_replication_blueprint.py
-python3 experiments/20_planetary_resonance_network.py
-
-# Run everything
+# Run everything (takes ~10 min)
 for f in experiments/[0-9]*.py; do python3 "$f"; done
 ```
 
-### Requirements
+**Requirements:** Python 3.10+ · NumPy · SciPy · Matplotlib · SymPy
 
-- Python 3.10+
-- numpy, scipy, matplotlib, sympy
+---
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 tesla-lab/
-├── paper.md              # Full paper (Markdown)
-├── paper.tex             # Full paper (LaTeX)
-├── RESULTS.md            # Standalone results summary
-├── experiments/          # 20 computational experiments
-│   ├── 01–10             # Foundation experiments
-│   ├── 11–13             # Advanced synthesis (paper core)
-│   └── 14–20             # Phase 2 extended investigations
-├── results/              # Generated plots (30+ figures)
-├── utils/                # Shared physics modules
-├── references/           # Reference materials
+├── paper.md                    # Full scientific paper (Markdown)
+├── paper.tex                   # Full scientific paper (LaTeX)
+├── RESULTS.md                  # Standalone results summary
+├── experiments/
+│   ├── 01-10_*.py              # Foundation: validating Tesla's claims
+│   ├── 11-13_*.py              # Core thesis: dual-mode excitation
+│   └── 14-20_*.py              # Extended: Wardenclyffe, Marconi, replication
+├── results/                    # 47 generated figures
+├── references/                 # Source materials
 └── requirements.txt
 ```
+
+---
+
+## 📖 Read the Paper
+
+**["Dual-Mode Earth-Ionosphere Excitation: Reconciling Tesla's Colorado Springs Observations with Modern Electromagnetic Theory"](paper.md)**
+
+Covers the full theoretical framework, all 20 experiments, and the novel dual-mode coupling mechanism. Written for peer review.
+
+---
+
+## 🤔 Why This Matters
+
+Tesla has been simultaneously over-mythologized (free energy! earthquake machines!) and under-credited (his actual electromagnetic insights were decades ahead). This project separates signal from noise using computation:
+
+- **For physicists:** The TM₀ mode of the Earth-ionosphere waveguide has been overlooked in Schumann resonance literature. The dual-mode coupling framework is new.
+- **For historians:** Marconi's 1901 experiment probably worked for different reasons than the textbooks claim.
+- **For engineers:** Tesla's core system is reproducible with modern parts for ~$2K.
+- **For everyone:** One of history's most controversial scientists was right about far more than we thought.
+
+---
 
 ## License
 
@@ -153,6 +197,10 @@ MIT License. Tesla's work belongs to humanity. ⚡
 
 ---
 
-**Author:** Cody Churchwell, [Sentinel Owl Technologies](https://github.com/consigcody94)
+<p align="center">
+  <strong>Cody Churchwell</strong> · <a href="https://sentinelowl.org">Sentinel Owl Technologies</a> · <a href="https://phosphor-os.org">Phosphor OS</a>
+</p>
 
-*Built with rigorous physics, real math, and genuine curiosity about one of history's most misunderstood inventors.*
+<p align="center">
+  <em>Built with rigorous physics, real math, and respect for a man who deserved better from history.</em>
+</p>
