@@ -23,6 +23,20 @@
 
 ---
 
+## 📚 Read the Paper
+
+| Format | Link |
+|--------|------|
+| 📄 **PDF Download** | [GitHub Release (v1.0.0)](https://github.com/consigcody94/tesla-lab/releases/tag/v1.0.0) |
+| 🌐 **Web Version** | [consigcody94.github.io/tesla-lab](https://consigcody94.github.io/tesla-lab/) |
+| 📝 **Markdown** | [paper.md](paper.md) |
+| 🔗 **Zenodo DOI** | *Coming soon — [enable here](https://zenodo.org/account/settings/github/)* |
+| 📐 **arXiv** | *Submission pending — see [arxiv/README.md](arxiv/README.md)* |
+
+> **Publishing guide:** See [`arxiv/README.md`](arxiv/README.md) for instructions on Zenodo, arXiv, OSF, and other platforms.
+
+---
+
 ## 🧠 What Is This?
 
 We digitally reconstructed Tesla's actual apparatus using his patents and Colorado Springs notes, modeled the electromagnetic fields it produced, and discovered something nobody's published before:

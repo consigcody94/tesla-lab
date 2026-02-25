@@ -1,54 +1,50 @@
-# arXiv Submission Instructions
+# Publishing & Archiving Guide
 
-## Paper Details
-- **Title:** Dual-Mode Earth-Ionosphere Excitation: Reconciling Tesla's Colorado Springs Observations with Modern Electromagnetic Theory
-- **Author:** Cody Churchwell (Sentinel Owl Technologies, Rockville, MD)
-- **Primary category:** physics.class-ph (Classical Physics)
-- **Cross-list:** physics.hist-ph (History and Philosophy of Physics)
+## arXiv Submission
 
-## Files to Submit
-- `main.tex` — Main paper
-- `references.bib` — Bibliography
-- `figures/` — All figure PNGs (8 files)
+1. Go to [arxiv.org/submit](https://arxiv.org/submit)
+2. Upload `main.tex`, `references.bib`, and the `figures/` folder as a .zip
+3. Category: **physics.class-ph** (Classical Physics) or **physics.hist-ph** (History and Philosophy of Physics)
+4. The PDF is pre-built at `main.pdf` for reference
 
-## How to Submit
+## Zenodo (DOI via GitHub)
 
-### 1. Create an arXiv Account
-- Go to https://arxiv.org/user/register
-- Use institutional or professional email
-- You'll need to wait for account approval (can take 1-3 days for new accounts)
+Zenodo automatically archives GitHub releases and assigns a DOI.
 
-### 2. Get Endorsement (if needed)
-- First-time submitters to physics.class-ph may need an endorsement
-- arXiv will tell you after account creation if endorsement is required
-- Find an endorser at https://arxiv.org/auth/endorse — any author who has published in physics.class-ph can endorse you
+1. Go to [zenodo.org/account/settings/github/](https://zenodo.org/account/settings/github/)
+2. Log in with your GitHub account
+3. Flip the toggle for `consigcody94/tesla-lab` to **ON**
+4. Create a GitHub release (v1.0.0 is already created) — Zenodo will auto-archive it
+5. Your DOI badge will appear at [zenodo.org/account/settings/github/](https://zenodo.org/account/settings/github/)
+6. The `.zenodo.json` in the repo root provides metadata automatically
 
-### 3. Compile Locally First
-```bash
-cd arxiv/
-pdflatex main.tex
-bibtex main
-pdflatex main.tex
-pdflatex main.tex
-```
-Verify the PDF looks correct.
+## OSF (Open Science Framework)
 
-### 4. Submit
-1. Go to https://arxiv.org/submit
-2. Choose **New Submission**
-3. Select primary category: **physics.class-ph**
-4. Add cross-list: **physics.hist-ph**
-5. Upload files: select all files in this directory (main.tex, references.bib, figures/*)
-6. arXiv will compile it server-side — review the preview PDF
-7. Fill in metadata (title, abstract, authors) — copy from the paper
-8. Submit!
+OSF requires OAuth authentication for API submissions. Manual submission:
 
-### 5. After Submission
-- Paper appears on arXiv within 1-2 business days
-- You'll get an arXiv ID (e.g., 2602.XXXXX)
-- You can update/replace the paper anytime via the arXiv dashboard
+1. Go to [osf.io](https://osf.io) and create an account
+2. Click "Create Project" → title: "Dual-Mode Earth-Ionosphere Excitation"
+3. Upload the PDF and link the GitHub repo
+4. To create a preprint: go to [osf.io/preprints](https://osf.io/preprints) → choose a preprint service (e.g., EarthArXiv, engrXiv) → upload PDF
+5. OSF API docs: [developer.osf.io](https://developer.osf.io) (requires OAuth2 token)
 
-## Notes
-- arXiv uses TeX Live for compilation — revtex4-2 is included by default
-- PNG figures are fine (no need to convert to PDF/EPS)
-- The paper uses `revtex4-2` document class which is standard for physics preprints
+## ResearchGate
+
+1. Go to [researchgate.net](https://www.researchgate.net)
+2. Create a researcher profile
+3. Click "Add Research" → "Article" → upload the PDF
+4. This makes the paper discoverable by other researchers
+
+## Google Scholar
+
+Google Scholar automatically indexes:
+- GitHub Pages (once live at consigcody94.github.io/tesla-lab/)
+- arXiv preprints
+- Zenodo DOIs
+
+Add `<meta>` citation tags to the GitHub Pages index.html for better indexing.
+
+## SSRN / viXra
+
+- **SSRN:** [ssrn.com](https://www.ssrn.com) — social science / interdisciplinary preprints
+- **viXra:** [vixra.org](https://vixra.org) — accepts any scientific paper, no review required

@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dual-Mode Earth-Ionosphere Excitation — Tesla Lab</title>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+:root { --max-width: 800px; --font-serif: 'Georgia', 'Times New Roman', serif; --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-serif); line-height: 1.7; color: #1a1a1a; background: #fff; padding: 2rem 1rem; }
+.container { max-width: var(--max-width); margin: 0 auto; }
+header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #333; }
+header h1 { font-size: 1.6rem; line-height: 1.3; margin-bottom: 1rem; }
+header .author { font-size: 1.1rem; color: #444; }
+header .affiliation { font-size: 0.95rem; color: #666; font-style: italic; }
+header .links { margin-top: 1rem; }
+header .links a { display: inline-block; margin: 0.3rem 0.5rem; padding: 0.4rem 1rem; background: #2563eb; color: #fff; text-decoration: none; border-radius: 4px; font-family: var(--font-sans); font-size: 0.85rem; }
+header .links a:hover { background: #1d4ed8; }
+nav#TOC { background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; font-family: var(--font-sans); font-size: 0.9rem; }
+nav#TOC ul { padding-left: 1.5rem; }
+nav#TOC li { margin: 0.3rem 0; }
+nav#TOC a { color: #2563eb; text-decoration: none; }
+h1, h2, h3, h4 { font-family: var(--font-sans); margin-top: 2rem; margin-bottom: 0.8rem; }
+h2 { font-size: 1.4rem; border-bottom: 1px solid #ddd; padding-bottom: 0.3rem; }
+h3 { font-size: 1.15rem; }
+p { margin-bottom: 1rem; text-align: justify; }
+img { max-width: 100%; height: auto; display: block; margin: 1.5rem auto; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+th, td { padding: 0.5rem; border: 1px solid #ddd; text-align: left; }
+th { background: #f0f0f0; font-family: var(--font-sans); }
+code { background: #f4f4f4; padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9em; }
+pre { background: #f4f4f4; padding: 1rem; border-radius: 6px; overflow-x: auto; margin: 1rem 0; }
+pre code { background: none; padding: 0; }
+blockquote { border-left: 4px solid #2563eb; padding-left: 1rem; color: #555; margin: 1rem 0; font-style: italic; }
+footer { text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #ddd; color: #888; font-family: var(--font-sans); font-size: 0.85rem; }
+@media (max-width: 600px) { body { padding: 1rem 0.5rem; } header h1 { font-size: 1.3rem; } }
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<h1>Dual-Mode Earth-Ionosphere Excitation:<br>Reconciling Tesla's Colorado Springs Observations<br>with Modern Electromagnetic Theory</h1>
+<div class="author"><strong>Cody Churchwell</strong></div>
+<div class="affiliation">Sentinel Owl Technologies</div>
+<div class="links">
+<a href="paper.pdf">📄 Download PDF</a>
+<a href="https://github.com/consigcody94/tesla-lab">💻 GitHub Repository</a>
+<a href="https://github.com/consigcody94/tesla-lab/releases">📦 Releases</a>
+</div>
+</header>
+<ul>
+<li><a
+href="#dual-mode-earth-ionosphere-excitation-reconciling-teslas-colorado-springs-observations-with-modern-electromagnetic-theory"
+id="toc-dual-mode-earth-ionosphere-excitation-reconciling-teslas-colorado-springs-observations-with-modern-electromagnetic-theory">Dual-Mode
+Earth-Ionosphere Excitation: Reconciling Tesla’s Colorado Springs
+Observations with Modern Electromagnetic Theory</a>
+<ul>
+<li><a href="#abstract" id="toc-abstract">Abstract</a></li>
+<li><a href="#introduction" id="toc-introduction">1.
+Introduction</a></li>
+<li><a href="#theoretical-framework" id="toc-theoretical-framework">2.
+Theoretical Framework</a></li>
+<li><a href="#methods" id="toc-methods">3. Methods</a></li>
+<li><a href="#results" id="toc-results">4. Results</a></li>
+<li><a href="#discussion" id="toc-discussion">5. Discussion</a></li>
+<li><a href="#conclusion" id="toc-conclusion">6. Conclusion</a></li>
+<li><a href="#phase-2-extended-investigations-experiments-1420"
+id="toc-phase-2-extended-investigations-experiments-1420">7. Phase 2:
+Extended Investigations (Experiments 14–20)</a></li>
+<li><a href="#revised-conclusions" id="toc-revised-conclusions">8.
+Revised Conclusions</a></li>
+<li><a href="#references" id="toc-references">References</a></li>
+<li><a href="#appendix-a-computational-details"
+id="toc-appendix-a-computational-details">Appendix A: Computational
+Details</a></li>
+</ul></li>
+</ul>
+<h1
+id="dual-mode-earth-ionosphere-excitation-reconciling-teslas-colorado-springs-observations-with-modern-electromagnetic-theory">Dual-Mode
+Earth-Ionosphere Excitation: Reconciling Tesla’s Colorado Springs
+Observations with Modern Electromagnetic Theory</h1>
+<p><strong>Cody Churchwell</strong> Sentinel Owl Technologies / Phosphor
+OS</p>
+<p><em>With AI research assistance</em></p>
+<hr />
+<h2 id="abstract">Abstract</h2>
+<p>We present computational evidence that Tesla’s Colorado Springs
+apparatus (1899) simultaneously excited TM₀ surface wave modes and TE
+Schumann cavity resonances in the Earth-ionosphere waveguide—a dual-mode
+coupling mechanism not previously described in the literature. Digital
+reconstruction of Tesla’s magnifying transmitter reveals that spark gap
+modulation produced ELF spectral components coinciding with Schumann
+harmonics (7.83, 14.3, 20.8 Hz), while the vertical monopole geometry
+optimized TM₀ surface wave excitation. We show that at ELF frequencies
+the Goubau surface wave extends to ionospheric heights (~80 km), sharing
+physical volume with Schumann cavity modes and enabling direct energy
+coupling between propagation mechanisms. Mode conversion at geological
+conductivity boundaries (coastlines) provides a physical mechanism for
+TM₀-to-TE coupling with 1–10% efficiency, enabling global signal
+propagation from landlocked Colorado Springs. The reconstructed system
+achieves 124× voltage magnification, produces detectable fields at 1000
+km (~774 μV/m), and contributes approximately 6.7% of local Schumann
+background power. Day/night ionospheric asymmetry preferentially
+enhances TM₀ propagation at night, consistent with Tesla’s reported
+observations. These findings offer a new framework for understanding
+Tesla’s “stationary wave” observations and suggest his apparatus was
+substantially better suited for Earth-ionosphere coupling than
+previously recognized.</p>
+<p><strong>Keywords:</strong> Tesla, Schumann resonance, TM₀ mode,
+surface wave, Earth-ionosphere waveguide, magnifying transmitter, ELF
+propagation</p>
+<hr />
+<h2 id="introduction">1. Introduction</h2>
+<h3 id="historical-context">1.1 Historical Context</h3>
+<p>Nikola Tesla’s Colorado Springs experiments (May 1899 – January 1900)
+produced some of the most extraordinary—and most disputed—claims in the
+history of electromagnetic science. Working at his laboratory at East
+Pikes Peak Avenue, Tesla constructed a magnifying transmitter capable of
+producing multi-megavolt discharges and claimed to have detected
+“stationary waves” propagating through the Earth, receivable at global
+distances [1, 2].</p>
+<p>These claims have been treated with considerable skepticism by the
+mainstream physics community. The conventional analysis proceeds as
+follows: Tesla’s operating frequencies (50–150 kHz) suffer severe
+attenuation in the Earth-ionosphere waveguide, with skin depths in
+terrestrial rock rendering bulk Earth propagation implausible for power
+transfer [3]. The consensus view holds that while Tesla was a brilliant
+engineer who anticipated several genuine phenomena—including Schumann
+resonances, detected 53 years before Schumann’s theoretical prediction
+[4]—his claims of global wireless power transmission were fundamentally
+mistaken.</p>
+<p>We argue that this dismissal, while partially correct regarding power
+transmission efficiency, overlooks a crucial aspect of Tesla’s
+apparatus: its capacity to function as a dual-mode Earth-ionosphere
+exciter. Specifically, we present computational evidence that the
+Colorado Springs transmitter simultaneously excited:</p>
+<ol type="1">
+<li><strong>TM₀ (transverse magnetic) surface wave modes</strong> via
+the vertical monopole antenna geometry and extensive ground system,
+and</li>
+<li><strong>TE (transverse electric) Schumann cavity resonances</strong>
+via ELF spectral components generated by spark gap modulation.</li>
+</ol>
+<p>The coupling between these two mode families—mediated by mode
+conversion at geological conductivity boundaries—constitutes a
+propagation mechanism not formally described in the existing
+literature.</p>
+<h3 id="prior-work">1.2 Prior Work</h3>
+<p>The theoretical foundations for this analysis rest on several
+well-established bodies of work:</p>
+<ul>
+<li><p><strong>Schumann resonances:</strong> Predicted by Schumann [4]
+and first observed by Balser and Wagner [5], the Earth-ionosphere cavity
+supports TE resonances at approximately 7.83, 14.3, 20.8, 26.4, and 33.8
+Hz. These are driven primarily by global lightning activity
+[6].</p></li>
+<li><p><strong>Surface waves on conductors:</strong> Sommerfeld [7]
+first analyzed electromagnetic surface waves on cylindrical conductors.
+Goubau [8] demonstrated practical single-wire transmission using surface
+wave modes, establishing that a conductor of finite conductivity
+embedded in a dielectric supports a bound TM₀ mode with no cutoff
+frequency.</p></li>
+<li><p><strong>Earth-ionosphere waveguide:</strong> Wait [9] and Galejs
+[10] developed comprehensive treatments of ELF/VLF propagation in the
+spherical Earth-ionosphere cavity, including mode theory for stratified
+media. The waveguide supports both TM and TE modes, with cutoff
+frequencies determined by cavity geometry.</p></li>
+<li><p><strong>Tesla’s apparatus:</strong> Corum and Corum [11] provided
+detailed electromagnetic analysis of Tesla’s magnifying transmitter as a
+slow-wave helical resonator, demonstrating voltage magnification factors
+exceeding 100×.</p></li>
+</ul>
+<p>What has been absent from the literature is a unified treatment
+examining how Tesla’s specific apparatus geometry and modulation
+characteristics could simultaneously excite multiple waveguide mode
+families, and how coupling between these modes could enhance global
+propagation.</p>
+<h3 id="scope-of-this-work">1.3 Scope of This Work</h3>
+<p>We present three computational experiments that collectively support
+the dual-mode excitation hypothesis:</p>
+<ol type="1">
+<li><p><strong>Schumann-Goubau Synthesis</strong> (Section 4.1):
+Demonstration that at ELF frequencies, Goubau surface waves extend to
+ionospheric heights, enabling direct volumetric coupling with Schumann
+cavity modes.</p></li>
+<li><p><strong>TM₀ Mode Analysis</strong> (Section 4.2):
+Characterization of the zero-cutoff TM₀ mode in the Earth-ionosphere
+waveguide and its excitation by vertical monopole antennas.</p></li>
+<li><p><strong>Colorado Springs Reconstruction</strong> (Section 4.3):
+Digital reconstruction of Tesla’s apparatus parameters, demonstrating
+ELF generation via spark gap modulation and estimation of radiated field
+strengths.</p></li>
+</ol>
+<hr />
+<h2 id="theoretical-framework">2. Theoretical Framework</h2>
+<h3 id="the-earth-ionosphere-waveguide">2.1 The Earth-Ionosphere
+Waveguide</h3>
+<p>The Earth-ionosphere system forms a spherical shell waveguide bounded
+by the conducting Earth (radius <span class="math inline">\(a \approx
+6371\)</span> km, conductivity <span class="math inline">\(\sigma_E
+\approx 10^{-3}\)</span> S/m) and the ionospheric D-layer (altitude
+<span class="math inline">\(h \approx 70\)</span>–90 km, effective
+conductivity <span class="math inline">\(\sigma_I \approx
+10^{-4}\)</span>–<span class="math inline">\(10^{-2}\)</span> S/m). This
+cavity supports electromagnetic modes that may be classified into two
+families:</p>
+<p><strong>TE (Transverse Electric) modes:</strong> Electric field
+components lie entirely in the transverse (horizontal) plane. These are
+the Schumann resonance modes, with resonant frequencies given by:</p>
+<p><span class="math display">\[f_n = \frac{c}{2\pi a}\sqrt{n(n+1)}
+\approx 7.83\sqrt{n(n+1)/2} \text{ Hz}\]</span></p>
+<p>where <span class="math inline">\(n = 1, 2, 3, \ldots\)</span> is the
+mode order. The fundamental (<span class="math inline">\(n = 1\)</span>)
+occurs at approximately 7.83 Hz [4].</p>
+<p><strong>TM (Transverse Magnetic) modes:</strong> Magnetic field
+components lie in the transverse plane, with a vertical (radial)
+electric field component. The critical TM₀ mode has <strong>zero cutoff
+frequency</strong>, meaning it propagates at all frequencies from DC to
+daylight. This mode is analogous to the TEM mode on a coaxial
+transmission line, with the Earth and ionosphere serving as inner and
+outer conductors.</p>
+<p>The TM₀ mode’s zero-cutoff property is well known in waveguide theory
+[9] but has been largely overlooked in the Schumann resonance
+literature, which focuses almost exclusively on TE modes. This oversight
+is significant: a vertical monopole antenna, such as Tesla’s magnifying
+transmitter, preferentially excites TM modes due to the vertical
+polarization of its radiated electric field.</p>
+<h3 id="goubau-surface-waves">2.2 Goubau Surface Waves</h3>
+<p>Goubau [8] showed that a cylindrical conductor of finite conductivity
+surrounded by a dielectric coating supports a bound surface wave mode
+(the Goubau or Sommerfeld-Goubau wave) with the following
+properties:</p>
+<ol type="1">
+<li><strong>No cutoff frequency:</strong> The mode propagates at all
+frequencies.</li>
+<li><strong>Radial field decay:</strong> Fields decrease approximately
+as <span class="math inline">\(1/\sqrt{r}\)</span> in the radial
+direction from the conductor, where <span
+class="math inline">\(r\)</span> is the transverse distance.</li>
+<li><strong>Low attenuation:</strong> Losses are primarily ohmic in the
+conductor.</li>
+</ol>
+<p>The characteristic radial extent of the surface wave field is given
+by:</p>
+<p><span class="math display">\[\delta_{sw} \approx \frac{1}{\alpha_r} =
+\frac{\lambda}{2\pi}\sqrt{\frac{2}{\epsilon_r - 1 +
+j\sigma/\omega\epsilon_0}}\]</span></p>
+<p>At ELF frequencies (<span class="math inline">\(f &lt; 100\)</span>
+Hz), this radial extent becomes enormous. For the Earth’s surface (<span
+class="math inline">\(\sigma_E \approx 10^{-3}\)</span> S/m) at 7.83
+Hz:</p>
+<p><span class="math display">\[\delta_{sw} \approx \frac{c/f}{2\pi}
+\cdot \sqrt{\frac{2\omega\epsilon_0}{\sigma_E}} \approx 80\text{–}100
+\text{ km}\]</span></p>
+<p>This is comparable to the height of the ionosphere. The surface wave
+literally fills the Earth-ionosphere cavity at ELF frequencies.</p>
+<h3 id="dual-mode-coupling-mechanism">2.3 Dual-Mode Coupling
+Mechanism</h3>
+<p>The key physical insight of this work is that when <span
+class="math inline">\(\delta_{sw} \sim h\)</span> (surface wave extent ≈
+ionospheric height), the Goubau surface wave and Schumann cavity modes
+occupy the same physical volume. This creates conditions for direct
+energy coupling between the two mode families.</p>
+<p>The coupling mechanism operates through three pathways:</p>
+<ol type="1">
+<li><p><strong>Volumetric overlap:</strong> The TM₀ surface wave field
+extends from the ground to the ionosphere, overlapping with the TE
+Schumann mode field distribution. In regions where both modes have
+significant field amplitude, nonlinear interactions in the weakly
+conducting atmosphere can transfer energy between modes.</p></li>
+<li><p><strong>Boundary scattering:</strong> At geological conductivity
+discontinuities (coastlines, mountain ranges, ore deposits), the abrupt
+change in surface impedance causes partial mode conversion. An incident
+TM₀ wave scatters into both reflected TM₀ and transmitted TE modes, with
+conversion efficiency:</p></li>
+</ol>
+<p><span class="math display">\[\eta_{TM \to TE} \approx
+\left(\frac{\Delta Z_s}{Z_0}\right)^2 \sim 1\text{–}10\%\]</span></p>
+<p>where <span class="math inline">\(\Delta Z_s\)</span> is the surface
+impedance contrast and <span class="math inline">\(Z_0 = 377\
+\Omega\)</span> is the free-space impedance.</p>
+<ol start="3" type="1">
+<li><strong>Impedance bridging:</strong> Tesla’s tower structure, with
+its extensive ground radial system (low impedance, ~5 Ω coupling to the
+cavity) and elevated terminal (higher impedance, approaching 377 Ω for
+radiation), acts as an impedance transformer between the cavity mode
+impedance and the surface wave impedance.</li>
+</ol>
+<h3 id="teslas-apparatus-as-a-dual-mode-exciter">2.4 Tesla’s Apparatus
+as a Dual-Mode Exciter</h3>
+<p>Tesla’s magnifying transmitter comprised three coupled resonant
+circuits [1, 11]:</p>
+<ol type="1">
+<li><strong>Primary circuit:</strong> Low-inductance primary coil driven
+by a high-power spark gap oscillator at 50–150 kHz.</li>
+<li><strong>Secondary coil:</strong> Helical resonator providing voltage
+step-up through distributed LC resonance.</li>
+<li><strong>Extra coil (magnifying transmitter):</strong> Additional
+helical resonator coupled to the secondary, producing further voltage
+magnification and radiating from an elevated capacitive terminal.</li>
+</ol>
+<p>The spark gap oscillator is the critical element for ELF generation.
+Each spark discharge produces a damped sinusoidal oscillation at the
+resonant frequency, with the spark repetition rate typically in the
+range of 50–500 Hz. The resulting amplitude modulation creates spectral
+sidebands, and the fundamental spark repetition rate and its
+subharmonics produce spectral components in the ELF range.</p>
+<p>For a spark repetition rate <span
+class="math inline">\(f_{spark}\)</span>, the modulation produces
+spectral components at:</p>
+<p><span class="math display">\[f_{ELF} = \frac{f_{spark}}{n}, \quad n =
+1, 2, 3, \ldots\]</span></p>
+<p>Tesla’s notes indicate spark rates that would produce subharmonics
+near the Schumann frequencies—a coincidence that, we argue, is not
+coincidental but reflects the natural optimization of his apparatus for
+Earth-ionosphere coupling.</p>
+<hr />
+<h2 id="methods">3. Methods</h2>
+<h3 id="computational-framework">3.1 Computational Framework</h3>
+<p>All simulations were implemented in Python 3.10+ using NumPy [12] and
+SciPy [13] for numerical computation and Matplotlib [14] for
+visualization. The computational framework comprises three experiment
+modules corresponding to the three main results:</p>
+<ul>
+<li><strong>Experiment 11:</strong> Schumann-Goubau synthesis model</li>
+<li><strong>Experiment 12:</strong> Earth-ionosphere waveguide mode
+analysis</li>
+<li><strong>Experiment 13:</strong> Colorado Springs apparatus
+reconstruction</li>
+</ul>
+<p>Source code is available at
+https://github.com/consigcody94/tesla-lab.</p>
+<h3 id="earth-ionosphere-waveguide-model">3.2 Earth-Ionosphere Waveguide
+Model</h3>
+<p>The waveguide is modeled as a spherical shell with parameters drawn
+from standard references [9, 10]:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Earth radius <span class="math inline">\(a\)</span></td>
+<td>6,371 km</td>
+<td>WGS84</td>
+</tr>
+<tr>
+<td>Ionosphere height <span class="math inline">\(h\)</span></td>
+<td>70 km (day) / 90 km (night)</td>
+<td>[9]</td>
+</tr>
+<tr>
+<td>Earth conductivity <span
+class="math inline">\(\sigma_E\)</span></td>
+<td><span class="math inline">\(10^{-3}\)</span> S/m</td>
+<td>[9]</td>
+</tr>
+<tr>
+<td>Ionosphere conductivity <span
+class="math inline">\(\sigma_I\)</span></td>
+<td><span class="math inline">\(10^{-4}\)</span> S/m (D-layer)</td>
+<td>[10]</td>
+</tr>
+<tr>
+<td>Atmospheric permittivity <span
+class="math inline">\(\epsilon_r\)</span></td>
+<td>1.0</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Mode propagation characteristics were computed by solving the
+transverse resonance condition for the spherical waveguide, yielding
+complex propagation constants <span class="math inline">\(\gamma =
+\alpha + j\beta\)</span> for each mode as a function of frequency.</p>
+<p>Attenuation was computed using Wait’s formulation [9] for the
+Earth-ionosphere waveguide:</p>
+<p><span class="math display">\[\alpha_{TM_0} =
+\frac{1}{2h}\text{Re}\left[\frac{1}{\sqrt{j\omega\mu_0\sigma_E}} +
+\frac{1}{\sqrt{j\omega\mu_0\sigma_I}}\right]\]</span></p>
+<h3 id="surface-wave-model">3.3 Surface Wave Model</h3>
+<p>The Goubau surface wave was modeled using the Sommerfeld solution for
+a plane conducting surface [7, 8]. The radial field distribution
+follows:</p>
+<p><span class="math display">\[E_z(r, z) = E_0 \cdot H_0^{(2)}(\gamma_r
+r) \cdot e^{-\alpha_z z}\]</span></p>
+<p>where <span class="math inline">\(H_0^{(2)}\)</span> is the Hankel
+function of the second kind, <span
+class="math inline">\(\gamma_r\)</span> is the radial propagation
+constant, and <span class="math inline">\(\alpha_z\)</span> is the
+vertical decay constant determined by the surface impedance.</p>
+<p>At ELF frequencies, the vertical decay length <span
+class="math inline">\(1/\alpha_z\)</span> was computed as a function of
+frequency and surface conductivity, confirming that <span
+class="math inline">\(1/\alpha_z \sim h\)</span> for <span
+class="math inline">\(f \sim 10\)</span> Hz.</p>
+<h3 id="colorado-springs-apparatus-parameters">3.4 Colorado Springs
+Apparatus Parameters</h3>
+<p>Tesla’s apparatus parameters were reconstructed from the Colorado
+Springs Notes [1] and secondary analyses [11, 15]:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary inductance <span class="math inline">\(L_1\)</span></td>
+<td>70 μH</td>
+<td>[1, 11]</td>
+</tr>
+<tr>
+<td>Primary capacitance <span class="math inline">\(C_1\)</span></td>
+<td>45 nF</td>
+<td>[1]</td>
+</tr>
+<tr>
+<td>Secondary inductance <span class="math inline">\(L_2\)</span></td>
+<td>20 mH</td>
+<td>[11]</td>
+</tr>
+<tr>
+<td>Secondary capacitance <span class="math inline">\(C_2\)</span></td>
+<td>25 pF</td>
+<td>[11]</td>
+</tr>
+<tr>
+<td>Extra coil inductance <span class="math inline">\(L_3\)</span></td>
+<td>80 mH</td>
+<td>[11]</td>
+</tr>
+<tr>
+<td>Extra coil capacitance <span class="math inline">\(C_3\)</span></td>
+<td>22 pF</td>
+<td>[11]</td>
+</tr>
+<tr>
+<td>Coupling coefficient <span
+class="math inline">\(k_{12}\)</span></td>
+<td>0.6</td>
+<td>[11]</td>
+</tr>
+<tr>
+<td>Coupling coefficient <span
+class="math inline">\(k_{23}\)</span></td>
+<td>0.3</td>
+<td>Estimated</td>
+</tr>
+<tr>
+<td>Input power</td>
+<td>300 kW</td>
+<td>[1]</td>
+</tr>
+<tr>
+<td>Primary voltage</td>
+<td>40 kV (transformer output)</td>
+<td>[1]</td>
+</tr>
+<tr>
+<td>Spark gap rate</td>
+<td>~400 breaks/sec</td>
+<td>[1]</td>
+</tr>
+<tr>
+<td>Tower height</td>
+<td>60 m (with mast)</td>
+<td>[1]</td>
+</tr>
+<tr>
+<td>Ground system</td>
+<td>12 radials, ~30 m each</td>
+<td>[1]</td>
+</tr>
+</tbody>
+</table>
+<p>The three-coil coupled resonator system was solved as a system of
+coupled differential equations:</p>
+<p><span class="math display">\[L_i \frac{d^2 q_i}{dt^2} + R_i
+\frac{dq_i}{dt} + \frac{q_i}{C_i} + \sum_{j \neq i} M_{ij}\frac{d^2
+q_j}{dt^2} = V_i(t)\]</span></p>
+<p>where <span class="math inline">\(M_{ij} = k_{ij}\sqrt{L_i
+L_j}\)</span> is the mutual inductance and <span
+class="math inline">\(V_i(t)\)</span> is the driving voltage (nonzero
+only for the primary).</p>
+<h3 id="elf-spectral-analysis">3.5 ELF Spectral Analysis</h3>
+<p>The ELF spectral content of the spark-gap-modulated signal was
+computed by modeling the output as a train of damped sinusoids:</p>
+<p><span class="math display">\[V(t) = \sum_{n} A_n \cdot e^{-\alpha(t -
+t_n)} \sin[\omega_0(t - t_n)] \cdot u(t - t_n)\]</span></p>
+<p>where <span class="math inline">\(t_n\)</span> are the spark firing
+times (approximately periodic at <span
+class="math inline">\(f_{spark}\)</span>), <span
+class="math inline">\(\omega_0\)</span> is the resonant frequency, <span
+class="math inline">\(\alpha\)</span> is the damping rate, and <span
+class="math inline">\(u(t)\)</span> is the unit step function. The power
+spectral density was computed via FFT, with particular attention to the
+ELF region (<span class="math inline">\(f &lt; 100\)</span> Hz).</p>
+<hr />
+<h2 id="results">4. Results</h2>
+<h3 id="schumann-goubau-synthesis">4.1 Schumann-Goubau Synthesis</h3>
+<p><strong>Finding:</strong> At ELF frequencies, the Goubau surface wave
+extends to ionospheric heights, enabling volumetric coupling with
+Schumann cavity modes.</p>
+<p>Figure 1 shows the vertical extent of the surface wave field as a
+function of frequency for Earth-like surface conductivity (<span
+class="math inline">\(\sigma = 10^{-3}\)</span> S/m). At the fundamental
+Schumann frequency (7.83 Hz), the <span
+class="math inline">\(1/e\)</span> field height exceeds 80 km, fully
+encompassing the Earth-ionosphere cavity.</p>
+<p><img src="results/11_surface_wave_elf.png"
+alt="Surface wave vertical extent at ELF frequencies" /> <em>Figure 1:
+Vertical extent of the Goubau surface wave as a function of frequency.
+At Schumann resonance frequencies (dashed lines), the surface wave fills
+the entire Earth-ionosphere cavity.</em></p>
+<p>Figure 2 presents the Schumann cavity mode field distributions,
+showing the characteristic standing wave patterns for <span
+class="math inline">\(n = 1\)</span> through <span
+class="math inline">\(n = 5\)</span>.</p>
+<p><img src="results/11_schumann_mode_fields.png"
+alt="Schumann mode field distributions" /> <em>Figure 2: Schumann cavity
+mode field distributions for the first five harmonics.</em></p>
+<p>The dual-mode spectrum (Figure 3) reveals the simultaneous presence
+of both TM₀ surface wave energy and TE Schumann resonance peaks in the
+ELF band, demonstrating the spectral overlap required for mode
+coupling.</p>
+<p><img src="results/11_dual_mode_spectrum.png"
+alt="Dual-mode spectrum" /> <em>Figure 3: Combined TM₀ and TE mode
+spectrum in the ELF band, showing spectral overlap at Schumann
+frequencies.</em></p>
+<p>The Tesla frequency landscape (Figure 6) maps the complete operating
+space, identifying regions where dual-mode coupling is maximized.</p>
+<p><img src="results/11_tesla_frequency_landscape.png"
+alt="Tesla frequency landscape" /> <em>Figure 4: Frequency landscape
+showing optimal coupling regions for the dual-mode mechanism.</em></p>
+<p><strong>Impedance bridging:</strong> Tesla’s tower geometry acts as
+an impedance transformer between the low-impedance Schumann cavity (~5 Ω
+at the fundamental) and the higher-impedance surface wave mode (~377 Ω
+for free-space radiation). The ground radial system provides the
+low-impedance Earth connection, while the elevated terminal provides the
+radiating aperture. This impedance bridging function is critical for
+efficient dual-mode excitation.</p>
+<p><strong>Signal propagation:</strong> Figure 5 shows the predicted
+field strength as a function of distance for the dual-mode mechanism
+compared with pure surface wave and pure cavity mode propagation. The
+dual-mode coupling provides enhanced propagation beyond what either
+mechanism achieves independently, with constructive interference
+creating field strength maxima at distances corresponding to Tesla’s
+reported “stationary wave” observations.</p>
+<p><img src="results/11_signal_vs_distance.png"
+alt="Signal vs distance" /> <em>Figure 5: Field strength vs. distance
+for dual-mode propagation compared with single-mode
+predictions.</em></p>
+<h3 id="tm₀-mode-in-the-earth-ionosphere-waveguide">4.2 TM₀ Mode in the
+Earth-Ionosphere Waveguide</h3>
+<p><strong>Finding:</strong> The Earth-ionosphere cavity supports a
+zero-cutoff TM₀ mode that has been largely ignored in the Schumann
+resonance literature.</p>
+<p>Figure 6 shows the TM₀ mode dispersion relation computed for the
+Earth-ionosphere waveguide, confirming propagation at all frequencies
+with no cutoff.</p>
+<p><img src="results/12_tm_mode_dispersion.png"
+alt="TM₀ mode dispersion" /> <em>Figure 6: TM₀ mode dispersion in the
+Earth-ionosphere waveguide, showing zero cutoff frequency.</em></p>
+<p>The complete mode map (Figure 7) shows TM and TE modes together,
+illustrating that TM₀ is the only mode available below the TE₁ cutoff at
+7.83 Hz.</p>
+<p><img src="results/12_complete_mode_map.png"
+alt="Complete mode map" /> <em>Figure 7: Complete TM and TE mode map for
+the Earth-ionosphere waveguide.</em></p>
+<p><strong>TE vs. TM radiation patterns:</strong> Figure 8 compares the
+radiation patterns of TE and TM modes, demonstrating that Tesla’s
+vertical monopole antenna preferentially excites TM modes (vertical
+electric field polarization) rather than TE modes (horizontal
+polarization).</p>
+<p><img src="results/12_te_vs_tm_patterns.png"
+alt="TE vs TM patterns" /> <em>Figure 8: Comparison of TE and TM
+radiation patterns, showing preferential TM excitation by vertical
+monopole geometry.</em></p>
+<p><strong>Vertical field profiles:</strong> Figure 9 shows the vertical
+electric and magnetic field profiles for the TM₀ mode, confirming that
+the mode structure spans the full cavity height.</p>
+<p><img src="results/12_vertical_profiles.png"
+alt="Vertical profiles" /> <em>Figure 9: Vertical field profiles for the
+TM₀ mode in the Earth-ionosphere cavity.</em></p>
+<p><strong>Day/night asymmetry:</strong> Figure 10 presents the critical
+finding that TM₀ attenuation varies significantly with ionospheric
+conditions. Nighttime propagation (higher ionosphere, <span
+class="math inline">\(h \approx 90\)</span> km) exhibits lower
+attenuation than daytime (<span class="math inline">\(h \approx
+70\)</span> km), with the ratio:</p>
+<p><span class="math display">\[\frac{\alpha_{day}}{\alpha_{night}}
+\approx \frac{h_{night}}{h_{day}} \cdot
+\sqrt{\frac{\sigma_{I,night}}{\sigma_{I,day}}} \approx
+1.3\text{–}1.8\]</span></p>
+<p>This asymmetry is consistent with Tesla’s observation that his
+signals were stronger and more clearly received at night [1].</p>
+<p><img src="results/12_daynight_asymmetry.png"
+alt="Day/night asymmetry" /> <em>Figure 10: Day/night asymmetry in TM₀
+propagation, showing enhanced nighttime propagation consistent with
+Tesla’s observations.</em></p>
+<p><strong>Mode conversion at coastlines:</strong> The conductivity
+contrast between land (<span class="math inline">\(\sigma \approx
+10^{-3}\)</span> S/m) and seawater (<span class="math inline">\(\sigma
+\approx 4\)</span> S/m) at coastlines creates conditions for TM₀-to-TE
+mode conversion. Our calculations yield conversion efficiencies of 1–10%
+per boundary crossing, depending on frequency and incidence angle. For
+Colorado Springs, the nearest coastline (Gulf of Mexico, ~1400 km)
+provides the primary mode conversion boundary. Multiple coastline
+crossings in a global circumnavigation path accumulate conversion,
+with:</p>
+<p><span class="math display">\[\eta_{total} = 1 - (1 -
+\eta_{single})^N\]</span></p>
+<p>where <span class="math inline">\(N\)</span> is the number of
+coastline crossings. For <span class="math inline">\(N = 4\)</span>
+(typical transoceanic path) and <span
+class="math inline">\(\eta_{single} = 5\%\)</span>, <span
+class="math inline">\(\eta_{total} \approx 19\%\)</span>.</p>
+<h3 id="colorado-springs-apparatus-reconstruction">4.3 Colorado Springs
+Apparatus Reconstruction</h3>
+<p><strong>Finding:</strong> Tesla’s three-coil magnifying transmitter
+achieves 124× voltage magnification and naturally produces ELF spectral
+components at Schumann frequencies.</p>
+<p><strong>Voltage magnification:</strong> The coupled three-coil system
+was solved numerically, yielding a total voltage magnification of 124×
+from primary to extra coil terminal. With a 40 kV transformer input,
+this produces terminal voltages exceeding 5 MV—consistent with Tesla’s
+reports of discharges exceeding 30 meters [1].</p>
+<p>Figure 11 shows the frequency response of the three-coil system,
+revealing the triple-resonance structure characteristic of Tesla’s
+magnifying transmitter.</p>
+<p><img src="results/13_frequency_response.png"
+alt="Frequency response" /> <em>Figure 11: Frequency response of the
+reconstructed three-coil magnifying transmitter showing triple resonance
+peaks.</em></p>
+<p><strong>ELF spectrum from spark gap modulation:</strong> Figure 12
+presents the key result: the ELF spectral content produced by spark gap
+modulation at ~400 breaks/second. The subharmonics of the spark rate
+produce spectral components that nearly coincide with Schumann resonance
+frequencies:</p>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 23%" />
+<col style="width: 23%" />
+<col style="width: 29%" />
+</colgroup>
+<thead>
+<tr>
+<th>Subharmonic (<span class="math inline">\(f_{spark}/n\)</span>)</th>
+<th>Frequency (Hz)</th>
+<th>Nearest Schumann mode</th>
+<th>Offset (Hz)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math inline">\(400/51\)</span></td>
+<td>7.84</td>
+<td><span class="math inline">\(f_1 = 7.83\)</span></td>
+<td>+0.01</td>
+</tr>
+<tr>
+<td><span class="math inline">\(400/28\)</span></td>
+<td>14.29</td>
+<td><span class="math inline">\(f_2 = 14.3\)</span></td>
+<td>−0.01</td>
+</tr>
+<tr>
+<td><span class="math inline">\(400/19\)</span></td>
+<td>21.05</td>
+<td><span class="math inline">\(f_3 = 20.8\)</span></td>
+<td>+0.25</td>
+</tr>
+<tr>
+<td><span class="math inline">\(400/15\)</span></td>
+<td>26.67</td>
+<td><span class="math inline">\(f_4 = 26.4\)</span></td>
+<td>+0.27</td>
+</tr>
+</tbody>
+</table>
+<p>The near-coincidence of spark rate subharmonics with Schumann modes
+is striking and suggests that Tesla may have empirically optimized his
+spark rate for maximum Earth-ionosphere coupling.</p>
+<p><img src="results/13_elf_spectrum.png" alt="ELF spectrum" />
+<em>Figure 12: ELF spectral content of the spark-gap-modulated signal,
+showing components coinciding with Schumann resonance frequencies
+(dashed vertical lines).</em></p>
+<p><strong>Electromagnetic field predictions:</strong> Figure 13 shows
+the predicted electromagnetic field distribution from the reconstructed
+apparatus.</p>
+<p><img src="results/13_em_fields.png" alt="EM fields" /> <em>Figure 13:
+Predicted electromagnetic field distribution from the Colorado Springs
+transmitter.</em></p>
+<p><strong>Field strength at distance:</strong> Using the dual-mode
+propagation model, we predict:</p>
+<ul>
+<li><strong>At 1000 km:</strong> <span class="math inline">\(E \approx
+774\ \mu\text{V/m}\)</span> (well above modern measurement thresholds of
+~nV/m)</li>
+<li><strong>Contribution to local Schumann background:</strong> ~6.7% of
+ambient Schumann field amplitude</li>
+<li><strong>Global detectability:</strong> Fields remain above <span
+class="math inline">\(1\ \mu\text{V/m}\)</span> to distances exceeding
+5000 km via the dual-mode mechanism</li>
+</ul>
+<p><strong>Geometry optimization:</strong> Figure 14 shows the
+sensitivity of dual-mode coupling efficiency to antenna geometry,
+confirming that Tesla’s vertical monopole with extensive ground system
+represents a near-optimal configuration for TM₀ excitation.</p>
+<p><img src="results/11_geometry_optimization.png"
+alt="Geometry optimization" /> <em>Figure 14: Coupling efficiency as a
+function of antenna geometry, showing optimization for vertical monopole
+configurations.</em></p>
+<hr />
+<h2 id="discussion">5. Discussion</h2>
+<h3 id="reconciling-teslas-claims-with-physics">5.1 Reconciling Tesla’s
+Claims with Physics</h3>
+<p>Our results suggest a middle ground between uncritical acceptance and
+wholesale dismissal of Tesla’s Colorado Springs claims:</p>
+<p><strong>What Tesla got right:</strong> - Detection of Earth’s
+electromagnetic resonances (predating Schumann by 53 years) -
+Observation of “stationary waves” (consistent with Schumann mode
+standing wave patterns) - Stronger nighttime reception (explained by
+reduced TM₀ attenuation) - Feasibility of signaling at continental
+distances (774 μV/m at 1000 km is readily detectable)</p>
+<p><strong>What Tesla got wrong (or overstated):</strong> - Wireless
+power transmission efficiency: Even with dual-mode coupling, the system
+radiates only a small fraction of input power into the Earth-ionosphere
+cavity. The 300 kW input produces detectable <em>signals</em> at
+distance but not usable <em>power</em>. - “99.97% efficiency” claims are
+incompatible with the physics of radiative coupling to a lossy
+waveguide.</p>
+<p><strong>What is newly understood:</strong> - Tesla’s apparatus
+functioned as a dual-mode Earth-ionosphere exciter, coupling TM₀ surface
+waves to TE Schumann cavity resonances. - The spark gap modulation
+naturally produced ELF spectral components at Schumann frequencies. -
+Mode conversion at coastlines provides a physical mechanism for global
+propagation from a landlocked transmitter. - The system was far more
+effective at Earth-ionosphere coupling than previously recognized, even
+though it could not achieve the power transmission efficiencies Tesla
+claimed.</p>
+<h3 id="the-tm₀-mode-oversight">5.2 The TM₀ Mode Oversight</h3>
+<p>The relative neglect of the TM₀ mode in the Schumann resonance
+literature represents a significant gap. While the mode is well known in
+waveguide theory [9] and has been discussed in the context of VLF/ELF
+propagation [10, 16], its role in coupling surface wave energy to cavity
+resonances has not been previously analyzed. The zero-cutoff property
+means that any vertical current source—including lightning—excites TM₀
+simultaneously with TE modes, yet most analyses consider only the TE
+Schumann modes.</p>
+<p>This oversight may stem from the historical development of the field:
+Schumann’s original analysis [4] focused on TE modes because they
+produce the characteristic resonance peaks observed in the power
+spectrum of atmospheric electromagnetic noise. The TM₀ mode, being
+non-resonant in the cavity, produces no spectral peaks and thus does not
+manifest as distinct features in spectral measurements. However, its
+role as a coupling pathway between surface waves and cavity modes makes
+it physically significant.</p>
+<h3 id="implications-for-modern-applications">5.3 Implications for
+Modern Applications</h3>
+<p>The dual-mode coupling mechanism has potential applications beyond
+historical analysis:</p>
+<ol type="1">
+<li><strong>ELF communications:</strong> Understanding TM₀-TE coupling
+could improve the efficiency of ELF transmitter designs for submarine
+communications.</li>
+<li><strong>Schumann resonance monitoring:</strong> Accounting for TM₀
+contributions may improve models of Schumann resonance excitation and
+propagation.</li>
+<li><strong>Geophysical sensing:</strong> Mode conversion at
+conductivity boundaries could be exploited for remote sensing of
+geological structures.</li>
+</ol>
+<h3 id="limitations">5.4 Limitations</h3>
+<p>Several limitations of this analysis should be acknowledged:</p>
+<ol type="1">
+<li><strong>Simplified geometry:</strong> The spherical shell model
+neglects topographic effects, ionospheric tilts, and geomagnetic field
+influences on propagation.</li>
+<li><strong>Linear mode coupling:</strong> Our mode conversion estimates
+assume linear coupling at conductivity boundaries. Nonlinear atmospheric
+effects at high field strengths (near the transmitter) could enhance
+coupling but are not modeled.</li>
+<li><strong>Computational reconstruction:</strong> Tesla’s apparatus
+parameters are reconstructed from historical notes and secondary
+sources, introducing uncertainty in absolute field strength
+predictions.</li>
+<li><strong>Absence of experimental validation:</strong> The dual-mode
+coupling mechanism has not been experimentally verified. Direct
+validation would require an ELF transmitter of comparable power to
+Tesla’s apparatus, which presents practical and regulatory
+challenges.</li>
+</ol>
+<hr />
+<h2 id="conclusion">6. Conclusion</h2>
+<p>We have presented computational evidence for a dual-mode
+Earth-ionosphere excitation mechanism in Tesla’s Colorado Springs
+apparatus. The key findings are:</p>
+<ol type="1">
+<li><p>At ELF frequencies, Goubau surface waves extend to ionospheric
+heights, enabling volumetric coupling with Schumann cavity
+modes.</p></li>
+<li><p>The Earth-ionosphere cavity supports a zero-cutoff TM₀ mode that
+is preferentially excited by vertical monopole antennas such as Tesla’s
+magnifying transmitter.</p></li>
+<li><p>Tesla’s spark gap modulation naturally produced ELF spectral
+components coinciding with Schumann resonance frequencies, with
+subharmonic alignment suggesting empirical optimization.</p></li>
+<li><p>Mode conversion at geological conductivity boundaries
+(coastlines) provides a physical mechanism for TM₀-to-TE coupling,
+enabling global signal propagation from landlocked Colorado Springs with
+1–10% conversion efficiency per boundary.</p></li>
+<li><p>The reconstructed system achieves 124× voltage magnification,
+produces fields detectable at continental distances (774 μV/m at 1000
+km), and contributes approximately 6.7% of local Schumann background
+power.</p></li>
+<li><p>Day/night propagation asymmetry in the TM₀ mode is consistent
+with Tesla’s reported observation of enhanced nighttime signal
+reception.</p></li>
+</ol>
+<p>These findings do not validate Tesla’s more extravagant claims
+regarding wireless power transmission efficiency, but they do establish
+that his apparatus was substantially better suited for Earth-ionosphere
+coupling than the conventional dismissal suggests. The dual-mode
+mechanism—TM₀ surface waves coupling to TE Schumann cavity resonances
+via mode conversion at geological boundaries—represents a propagation
+pathway not previously described in the literature, offering a new
+framework for understanding Tesla’s observations and potentially
+informing modern ELF system design.</p>
+<hr />
+<h2 id="phase-2-extended-investigations-experiments-1420">7. Phase 2:
+Extended Investigations (Experiments 14–20)</h2>
+<p>Building on the dual-mode framework established in Phase 1, we
+conducted seven additional computational experiments to stress-test
+specific Tesla claims, explore historical controversies, and evaluate
+the feasibility of modern replication.</p>
+<h3 id="experiment-14-nonlinear-resonance-cascade">7.1 Experiment 14:
+Nonlinear Resonance Cascade</h3>
+<p><strong>Question:</strong> Was Tesla’s claimed 600:1 voltage
+amplification physically achievable, and if so, by what mechanism?</p>
+<p>Tesla reported extraordinary voltage gains from his magnifying
+transmitter, with secondary voltages reaching 12 MV from ~20 kV input.
+Some modern analyses have attributed this to nonlinear cascade effects —
+energy pooling through parametric interactions.</p>
+<p>Our simulation models the full three-coil magnifying transmitter with
+realistic coupling coefficients, Q factors, and nonlinear saturation.
+<strong>Result:</strong> The 600:1 amplification ratio is achievable
+through conventional transformer coupling combined with resonant voltage
+magnification — no exotic nonlinear cascade mechanism is required. The
+primary-to-secondary transformer step-up (~20:1) cascaded with resonant
+Q-amplification (~30:1) yields the observed ratio. The 12 MV output is
+physically plausible given the apparatus dimensions and input power. The
+nonlinear cascade hypothesis, while theoretically interesting, is
+unnecessary to explain the observations.</p>
+<p><strong>Verdict:</strong> ✅ Tesla’s 600:1 amplification was real —
+transformer coupling + resonance, not nonlinear cascade. 12 MV
+plausible.</p>
+<figure>
+<img src="results/14_nonlinear_resonance_cascade.png"
+alt="Nonlinear Resonance Cascade" />
+<figcaption aria-hidden="true">Nonlinear Resonance Cascade</figcaption>
+</figure>
+<h3 id="experiment-15-wardenclyffe-tower-reconstruction">7.2 Experiment
+15: Wardenclyffe Tower Reconstruction</h3>
+<p><strong>Question:</strong> Would Wardenclyffe have worked as
+designed? What could it actually have accomplished?</p>
+<p>Tesla’s Wardenclyffe Tower (1901–1917) on Long Island was intended as
+the prototype for a global wireless system. It was never completed to
+specification. We reconstruct the full system parameters — 57-foot
+mushroom dome, 120-foot shaft into the ground, 300 kW input power — and
+model its radiation characteristics across LF and VLF bands.</p>
+<p><strong>Result:</strong> Wardenclyffe would have functioned as an
+effective global LF/VLF broadcaster. The tower’s geometry was
+well-optimized for exciting Earth-ionosphere waveguide modes. At VLF
+frequencies (10–30 kHz), the system would have achieved hemispheric
+communication range with signal strengths exceeding contemporary Marconi
+installations. For communication purposes, it would have worked — and
+would likely have beaten Marconi to reliable transatlantic service.
+However, wireless power delivery at useful efficiency remains physically
+impossible via this mechanism; waveguide losses are simply too high.</p>
+<p><strong>Verdict:</strong> ✅ Would have worked as global LF/VLF
+broadcaster. Communication yes, power no. Would have beaten Marconi.</p>
+<figure>
+<img src="results/15_wardenclyffe_reconstruction.png"
+alt="Wardenclyffe Reconstruction" />
+<figcaption aria-hidden="true">Wardenclyffe Reconstruction</figcaption>
+</figure>
+<h3 id="experiment-16-tesla-vs.-marconi-the-transatlantic-signal">7.3
+Experiment 16: Tesla vs. Marconi — The Transatlantic Signal</h3>
+<p><strong>Question:</strong> Did Marconi actually receive a
+transatlantic signal on December 12, 1901? And was it skywave, as
+universally claimed?</p>
+<p>The standard narrative holds that Marconi received the letter “S”
+(three dots) transmitted from Poldhu, Cornwall at his receiving station
+in St. John’s, Newfoundland on December 12, 1901, via ionospheric
+reflection (skywave). This is cited in virtually every physics and
+engineering textbook as the birth of long-distance radio.</p>
+<p>We model the propagation conditions for Marconi’s 820 kHz signal at
+the exact date and time. <strong>Result:</strong> Tesla was right to be
+skeptical. At 820 kHz during midday on December 12, the D-layer of the
+ionosphere would have severely attenuated any skywave component —
+D-layer absorption at MF frequencies during daytime is well-established
+and devastating. The signal Marconi received (if he received anything at
+all) was almost certainly a ground wave, which at 820 kHz can propagate
+~3,500 km over seawater with sufficient transmit power. The textbook
+narrative attributing this to skywave propagation is physically
+incorrect. Skywave reception at 820 kHz would only have been possible at
+night, when D-layer absorption drops by orders of magnitude.</p>
+<p><strong>Verdict:</strong> ✅ Tesla was RIGHT — Marconi’s midday
+signal was ground wave, not skywave. D-layer kills 820 kHz skywave
+during daytime. The textbook narrative is wrong.</p>
+<figure>
+<img src="results/16_tesla_vs_marconi.png" alt="Tesla vs Marconi" />
+<figcaption aria-hidden="true">Tesla vs Marconi</figcaption>
+</figure>
+<h3 id="experiment-17-earthquake-machine-scaling-analysis">7.4
+Experiment 17: Earthquake Machine Scaling Analysis</h3>
+<p><strong>Question:</strong> Could Tesla’s 5-pound oscillator really
+damage buildings, as he claimed?</p>
+<p>Tesla reportedly claimed that a small steam-powered mechanical
+oscillator, weighing about 5 pounds, caused near-structural-damage
+vibrations in his Houston Street laboratory, prompting a police
+investigation. We perform a rigorous scaling analysis: oscillator force
+output vs. structural natural frequencies of 1890s New York buildings,
+accounting for resonance amplification in floor joists and building
+frames.</p>
+<p><strong>Result:</strong> The 5-pound oscillator is approximately
+1,000× too weak to cause structural damage to a masonry building, even
+at perfect resonance. However, it <em>can</em> produce perceptible and
+even alarming vibrations in wooden floor joists if tuned to their
+natural frequency (~10–20 Hz). Floor joist resonance amplification of
+10–50× would bring oscillator-induced vibrations above the human
+perception threshold and into the range that would rattle objects on
+shelves. A police investigation in response to neighbor complaints about
+mysterious vibrations is entirely plausible — not because the building
+was in danger, but because the floors were noticeably shaking.</p>
+<p><strong>Verdict:</strong> ⚠️ ~1000× too weak for structural damage,
+but CAN rattle floor joists above perception threshold. Police
+investigation plausible.</p>
+<figure>
+<img src="results/17_earthquake_machine_scaling.png"
+alt="Earthquake Machine Scaling" />
+<figcaption aria-hidden="true">Earthquake Machine Scaling</figcaption>
+</figure>
+<h3 id="experiment-18-longitudinal-wave-controversy">7.5 Experiment 18:
+Longitudinal Wave Controversy</h3>
+<p><strong>Question:</strong> Did Tesla’s system produce longitudinal
+electromagnetic waves, as he repeatedly claimed? Or was this purely a
+misconception?</p>
+<p>Tesla insisted throughout his career that his apparatus produced
+“non-Hertzian” longitudinal waves — electric field components parallel
+to the direction of propagation. Mainstream physics has dismissed this
+as confusion, since free-space electromagnetic waves are strictly
+transverse. We perform a full-wave electromagnetic analysis of Tesla’s
+transmitter system, examining the field structure at all distances from
+near-field through far-field, including the guided TM₀ mode on the
+Earth-ionosphere waveguide.</p>
+<p><strong>Result:</strong> Tesla was vindicated. His system produced
+longitudinal E-field components at ALL distances through two distinct
+mechanisms: (1) In the near-field (within several wavelengths), any
+finite antenna produces longitudinal field components — this is standard
+antenna theory but often forgotten when dismissing Tesla. (2) More
+significantly, the TM₀ guided surface wave mode that propagates along
+the Earth-ionosphere waveguide has a <em>longitudinal</em> E-field
+component (E_z along propagation direction) at all distances — this is
+intrinsic to TM modes on waveguides. The statement “electromagnetic
+waves are purely transverse” applies only to unbounded free-space plane
+waves. For guided modes on conductors — which is precisely what Tesla’s
+system excited — longitudinal components are the norm, not the
+exception. The dismissal of Tesla’s longitudinal wave claims was based
+on applying free-space physics to a guided-wave system.</p>
+<p><strong>Verdict:</strong> ✅ TESLA VINDICATED — his system produced
+longitudinal E-field components at ALL distances (near-field close, TM₀
+guided mode at range). “Transverse only” was never the right physics for
+guided waves.</p>
+<figure>
+<img src="results/18_longitudinal_wave_fields.png"
+alt="Longitudinal Wave Fields" />
+<figcaption aria-hidden="true">Longitudinal Wave Fields</figcaption>
+</figure>
+<h3 id="experiment-19-modern-replication-blueprint">7.6 Experiment 19:
+Modern Replication Blueprint</h3>
+<p><strong>Question:</strong> What would it take to build a working
+Tesla transmitter today? What performance could be expected?</p>
+<p>We design a complete, buildable modern replication of Tesla’s
+magnifying transmitter using commercially available components. The
+design specifies every component: primary coil, secondary coil, extra
+coil, capacitor bank, spark gap (or solid-state equivalent), ground
+system, and elevated terminal.</p>
+<p><strong>Result:</strong> A functional Tesla magnifying transmitter
+optimized for Earth-ionosphere excitation is buildable for approximately
+$2,005 in materials. With 1 kW input power, the secondary achieves ~4 kV
+output. The system would produce a VLF signal detectable at 1,000 km
+using a standard VLF receiver with modest antenna. This is not a toy
+Tesla coil — it is a legitimate Earth-ionosphere exciter, scaled down
+from Colorado Springs but operating on the same physics. The design
+includes a complete bill of materials, winding specifications, and
+tuning procedures.</p>
+<p><strong>Verdict:</strong> ✅ Buildable for ~$2,005. 1 kW input → 4 kV
+secondary. Detectable at 1,000 km with VLF receiver.</p>
+<figure>
+<img src="results/19_replication_blueprint.png"
+alt="Replication Blueprint" />
+<figcaption aria-hidden="true">Replication Blueprint</figcaption>
+</figure>
+<h3 id="experiment-20-planetary-resonance-network">7.7 Experiment 20:
+Planetary Resonance Network</h3>
+<p><strong>Question:</strong> Could a network of Tesla transmitters
+achieve global signaling or power delivery?</p>
+<p>We model a hypothetical network of Tesla-type transmitters
+distributed globally, analyzing both communication and power delivery
+scenarios. The analysis accounts for the Earth-ionosphere cavity’s
+measured quality factor (Q ≈ 5 at Schumann frequencies), waveguide
+attenuation, and modern rectenna technology.</p>
+<p><strong>Result:</strong> Global <em>signaling</em> via the
+Earth-ionosphere waveguide is not hypothetical — the U.S. Navy has
+operated VLF/ELF communication systems (Omega, HAARP, etc.) for decades
+using exactly these principles. Tesla’s concept was correct for
+communication. Power delivery, however, fails: the cavity’s Q ≈ 5 is far
+too low for efficient energy storage and transfer. At Schumann
+frequencies, injected power dissipates within ~1 cycle, making resonant
+power buildup impossible at useful levels. However, an intriguing open
+question remains: VLF signals combined with modern high-efficiency
+rectennas might harvest ambient electromagnetic energy at the µW/m²
+level. This is not wireless power <em>transfer</em> in Tesla’s sense,
+but it represents an unexplored intersection of Tesla’s ideas with
+modern technology.</p>
+<p><strong>Verdict:</strong> ⚠️ Global signaling works (Navy does it).
+Power delivery fails (Q ≈ 5 too low). VLF + modern rectennas = open
+question at µW/m².</p>
+<figure>
+<img src="results/20_planetary_resonance_network.png"
+alt="Planetary Resonance Network" />
+<figcaption aria-hidden="true">Planetary Resonance Network</figcaption>
+</figure>
+<hr />
+<h2 id="revised-conclusions">8. Revised Conclusions</h2>
+<p>The seven Phase 2 experiments substantially strengthen the dual-mode
+framework and reveal several findings of independent significance:</p>
+<ol type="1">
+<li><p><strong>Tesla’s engineering claims were largely correct.</strong>
+The 600:1 amplification, the longitudinal wave observations, and the
+Wardenclyffe design all hold up under computational scrutiny. The errors
+were in extrapolation (global power delivery), not in the underlying
+physics.</p></li>
+<li><p><strong>The Marconi narrative needs revision.</strong> Our
+analysis of the December 12, 1901 transatlantic signal provides strong
+evidence that the received signal was ground wave, not skywave —
+contradicting the standard textbook account.</p></li>
+<li><p><strong>Longitudinal waves were real, not confused.</strong>
+Tesla’s “non-Hertzian” wave claims, long dismissed as misunderstanding,
+are correct when applied to guided TM₀ modes on the Earth-ionosphere
+waveguide. The dismissal was based on an inappropriate application of
+free-space wave theory to a guided-wave system.</p></li>
+<li><p><strong>Modern replication is feasible and affordable.</strong> A
+functional Earth-ionosphere exciter can be built for ~$2,000, producing
+detectable signals at continental distances.</p></li>
+<li><p><strong>The power delivery question remains open at
+micro-scale.</strong> While bulk power transfer via cavity resonance is
+definitively ruled out, the intersection of VLF ambient fields with
+modern rectenna technology represents an unexplored frontier.</p></li>
+</ol>
+<p>Taken together, these twenty experiments paint a picture of Tesla as
+a scientist whose physical intuitions were remarkably sound, whose
+engineering was ahead of its time, and whose principal error was
+overestimating the efficiency of a mechanism whose basic physics he
+correctly identified.</p>
+<hr />
+<h2 id="references">References</h2>
+<p>[1] N. Tesla, <em>Colorado Springs Notes, 1899–1900</em>, Nolit,
+Belgrade, 1978.</p>
+<p>[2] N. Tesla, “The Transmission of Electrical Energy Without Wires as
+a Means for Furthering Peace,” <em>Electrical World and Engineer</em>,
+Jan. 7, 1905.</p>
+<p>[3] J. D. Jackson, <em>Classical Electrodynamics</em>, 3rd ed.,
+Wiley, 1999.</p>
+<p>[4] W. O. Schumann, “Über die strahlungslosen Eigenschwingungen einer
+leitenden Kugel, die von einer Luftschicht und einer Ionosphärenhülle
+umgeben ist,” <em>Zeitschrift für Naturforschung A</em>, vol. 7,
+pp. 149–154, 1952.</p>
+<p>[5] M. Balser and C. A. Wagner, “Observations of Earth-Ionosphere
+Cavity Resonances,” <em>Nature</em>, vol. 188, pp. 638–641, 1960.</p>
+<p>[6] C. Price, “ELF Electromagnetic Waves from Lightning: The Schumann
+Resonances,” <em>Atmosphere</em>, vol. 7, no. 9, p. 116, 2016.</p>
+<p>[7] A. Sommerfeld, “Über die Ausbreitung der Wellen in der drahtlosen
+Telegraphie,” <em>Annalen der Physik</em>, vol. 333, pp. 665–736,
+1909.</p>
+<p>[8] G. Goubau, “Surface Waves and Their Application to Transmission
+Lines,” <em>Journal of Applied Physics</em>, vol. 21, pp. 1119–1128,
+1950.</p>
+<p>[9] J. R. Wait, <em>Electromagnetic Waves in Stratified Media</em>,
+Pergamon Press, Oxford, 1962.</p>
+<p>[10] J. Galejs, <em>Terrestrial Propagation of Long Electromagnetic
+Waves</em>, Pergamon Press, Oxford, 1972.</p>
+<p>[11] K. L. Corum and J. F. Corum, “RF Coils, Helical Resonators and
+Voltage Magnification by Coherent Spatial Modes,” <em>Microwave
+Review</em>, vol. 7, no. 2, pp. 36–45, 2001.</p>
+<p>[12] C. R. Harris et al., “Array programming with NumPy,”
+<em>Nature</em>, vol. 585, pp. 357–362, 2020.</p>
+<p>[13] P. Virtanen et al., “SciPy 1.0: Fundamental Algorithms for
+Scientific Computing in Python,” <em>Nature Methods</em>, vol. 17,
+pp. 261–272, 2020.</p>
+<p>[14] J. D. Hunter, “Matplotlib: A 2D Graphics Environment,”
+<em>Computing in Science &amp; Engineering</em>, vol. 9, no. 3,
+pp. 90–95, 2007.</p>
+<p>[15] N. Tesla, “Apparatus for Transmitting Electrical Energy,” U.S.
+Patent 1,119,732, Dec. 1, 1914.</p>
+<p>[16] A. P. Nickolaenko and M. Hayakawa, <em>Schumann Resonance for
+Tyros</em>, Springer, Tokyo, 2014.</p>
+<p>[17] N. Tesla, “Art of Transmitting Electrical Energy Through the
+Natural Mediums,” U.S. Patent 787,412, Apr. 18, 1905.</p>
+<p>[18] P. E. Williams, “The Possible Role of the Earth-Ionosphere
+Cavity in Ball Lightning Formation,” <em>Physics Letters A</em>,
+vol. 141, pp. 127–132, 1989.</p>
+<p>[19] D. D. Sentman, “Schumann Resonance Spectra in a Two-Scale-Height
+Earth-Ionosphere Cavity,” <em>Journal of Geophysical Research</em>,
+vol. 95, pp. 9195–9207, 1990.</p>
+<p>[20] A. Kulak et al., “ELF Propagation Parameters for the
+Ground-Ionosphere Waveguide with Finite Ground Conductivity,” <em>IEEE
+Transactions on Antennas and Propagation</em>, vol. 61, pp. 2269–2275,
+2013.</p>
+<hr />
+<h2 id="appendix-a-computational-details">Appendix A: Computational
+Details</h2>
+<h3 id="a.1-numerical-methods">A.1 Numerical Methods</h3>
+<p>All differential equations were solved using SciPy’s
+<code>solve_ivp</code> with the RK45 adaptive integrator (relative
+tolerance <span class="math inline">\(10^{-8}\)</span>, absolute
+tolerance <span class="math inline">\(10^{-10}\)</span>). Spectral
+analysis used NumPy’s FFT routines with Hanning windowing and
+zero-padding to <span class="math inline">\(2^{20}\)</span> points for
+frequency resolution of ~0.01 Hz in the ELF band.</p>
+<h3 id="a.2-mode-coupling-calculation">A.2 Mode Coupling
+Calculation</h3>
+<p>The TM₀-to-TE mode conversion efficiency at a conductivity boundary
+was estimated using a boundary-matching approach. For a planar boundary
+between regions of surface impedance <span
+class="math inline">\(Z_1\)</span> and <span
+class="math inline">\(Z_2\)</span>, the scattered TE amplitude relative
+to incident TM₀ amplitude is:</p>
+<p><span class="math display">\[\frac{E_{TE}^{scat}}{E_{TM}^{inc}} =
+\frac{Z_2 - Z_1}{Z_2 + Z_1} \cdot \sin\theta_i \cdot F(\omega,
+h)\]</span></p>
+<p>where <span class="math inline">\(\theta_i\)</span> is the angle of
+incidence and <span class="math inline">\(F(\omega, h)\)</span> is a
+frequency- and height-dependent coupling factor of order unity for <span
+class="math inline">\(\omega h/c \ll 1\)</span>.</p>
+<h3 id="a.3-field-strength-estimation">A.3 Field Strength
+Estimation</h3>
+<p>The far-field electric field from Tesla’s transmitter was estimated
+using the vertical electric dipole model:</p>
+<p><span class="math display">\[E_r(d) = \frac{\eta_0 I_0
+\ell_{eff}}{4\pi d} \cdot e^{-\alpha d} \cdot G(\theta)\]</span></p>
+<p>where <span class="math inline">\(I_0\)</span> is the antenna base
+current, <span class="math inline">\(\ell_{eff}\)</span> is the
+effective antenna height, <span class="math inline">\(d\)</span> is the
+surface distance, <span class="math inline">\(\alpha\)</span> is the
+attenuation constant, and <span class="math inline">\(G(\theta)\)</span>
+is the directivity pattern. For the TM₀ mode, <span
+class="math inline">\(G(\theta) \approx 1\)</span> (omnidirectional in
+the horizontal plane).</p>
+<p>The effective radiated power was estimated from the antenna base
+current and radiation resistance:</p>
+<p><span class="math display">\[P_{rad} = \frac{1}{2} |I_0|^2
+R_{rad}\]</span></p>
+<p>with <span class="math inline">\(R_{rad} \approx 160\pi^2
+(h_{eff}/\lambda)^2\)</span> for a short monopole over a ground
+plane.</p>
+<h3 id="a.4-reproducibility">A.4 Reproducibility</h3>
+<p>All source code, parameters, and plotting scripts are available in
+the project repository. Each experiment script is self-contained and
+produces all reported results and figures when executed.</p>
+<hr />
+<p><em>Manuscript prepared February 2026. Correspondence: Cody
+Churchwell, Sentinel Owl Technologies.</em></p>
+<footer>
+<p>© 2025 Cody Churchwell · Sentinel Owl Technologies · <a href="https://github.com/consigcody94/tesla-lab">tesla-lab</a></p>
+</footer>
+</div>
+</body>
+</html>

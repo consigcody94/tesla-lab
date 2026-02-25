@@ -1,0 +1,25 @@
+{
+  "title": "Dual-Mode Earth-Ionosphere Excitation: Reconciling Tesla's Colorado Springs Observations with Modern Electromagnetic Theory",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "creators": [
+    {
+      "name": "Churchwell, Cody",
+      "affiliation": "Sentinel Owl Technologies"
+    }
+  ],
+  "description": "We present 20 computational experiments investigating Tesla's electromagnetic claims through modern physics. Digital reconstruction of Tesla's Colorado Springs magnifying transmitter reveals simultaneous excitation of TM₀ surface wave modes and TE Schumann cavity resonances — a dual-mode coupling mechanism not previously described in the literature. Key findings include: (1) Marconi's 1901 transatlantic signal likely propagated via ground wave, not skywave; (2) Tesla's 'longitudinal waves' correspond to real TM₀ guided mode components; (3) Wardenclyffe Tower would have functioned as a global communication system; (4) the core system is replicable with modern components for ~$2,000.",
+  "license": "MIT",
+  "keywords": [
+    "Tesla",
+    "electromagnetic theory",
+    "Schumann resonance",
+    "Earth-ionosphere waveguide",
+    "TM0 mode",
+    "wireless power",
+    "surface wave",
+    "Goubau line",
+    "Colorado Springs",
+    "magnifying transmitter"
+  ]
+}
