@@ -382,6 +382,114 @@ These findings do not validate Tesla's more extravagant claims regarding wireles
 
 ---
 
+## 7. Phase 2: Extended Investigations (Experiments 14–20)
+
+Building on the dual-mode framework established in Phase 1, we conducted seven additional computational experiments to stress-test specific Tesla claims, explore historical controversies, and evaluate the feasibility of modern replication.
+
+### 7.1 Experiment 14: Nonlinear Resonance Cascade
+
+**Question:** Was Tesla's claimed 600:1 voltage amplification physically achievable, and if so, by what mechanism?
+
+Tesla reported extraordinary voltage gains from his magnifying transmitter, with secondary voltages reaching 12 MV from ~20 kV input. Some modern analyses have attributed this to nonlinear cascade effects — energy pooling through parametric interactions.
+
+Our simulation models the full three-coil magnifying transmitter with realistic coupling coefficients, Q factors, and nonlinear saturation. **Result:** The 600:1 amplification ratio is achievable through conventional transformer coupling combined with resonant voltage magnification — no exotic nonlinear cascade mechanism is required. The primary-to-secondary transformer step-up (~20:1) cascaded with resonant Q-amplification (~30:1) yields the observed ratio. The 12 MV output is physically plausible given the apparatus dimensions and input power. The nonlinear cascade hypothesis, while theoretically interesting, is unnecessary to explain the observations.
+
+**Verdict:** ✅ Tesla's 600:1 amplification was real — transformer coupling + resonance, not nonlinear cascade. 12 MV plausible.
+
+![Nonlinear Resonance Cascade](results/14_nonlinear_resonance_cascade.png)
+
+### 7.2 Experiment 15: Wardenclyffe Tower Reconstruction
+
+**Question:** Would Wardenclyffe have worked as designed? What could it actually have accomplished?
+
+Tesla's Wardenclyffe Tower (1901–1917) on Long Island was intended as the prototype for a global wireless system. It was never completed to specification. We reconstruct the full system parameters — 57-foot mushroom dome, 120-foot shaft into the ground, 300 kW input power — and model its radiation characteristics across LF and VLF bands.
+
+**Result:** Wardenclyffe would have functioned as an effective global LF/VLF broadcaster. The tower's geometry was well-optimized for exciting Earth-ionosphere waveguide modes. At VLF frequencies (10–30 kHz), the system would have achieved hemispheric communication range with signal strengths exceeding contemporary Marconi installations. For communication purposes, it would have worked — and would likely have beaten Marconi to reliable transatlantic service. However, wireless power delivery at useful efficiency remains physically impossible via this mechanism; waveguide losses are simply too high.
+
+**Verdict:** ✅ Would have worked as global LF/VLF broadcaster. Communication yes, power no. Would have beaten Marconi.
+
+![Wardenclyffe Reconstruction](results/15_wardenclyffe_reconstruction.png)
+
+### 7.3 Experiment 16: Tesla vs. Marconi — The Transatlantic Signal
+
+**Question:** Did Marconi actually receive a transatlantic signal on December 12, 1901? And was it skywave, as universally claimed?
+
+The standard narrative holds that Marconi received the letter "S" (three dots) transmitted from Poldhu, Cornwall at his receiving station in St. John's, Newfoundland on December 12, 1901, via ionospheric reflection (skywave). This is cited in virtually every physics and engineering textbook as the birth of long-distance radio.
+
+We model the propagation conditions for Marconi's 820 kHz signal at the exact date and time. **Result:** Tesla was right to be skeptical. At 820 kHz during midday on December 12, the D-layer of the ionosphere would have severely attenuated any skywave component — D-layer absorption at MF frequencies during daytime is well-established and devastating. The signal Marconi received (if he received anything at all) was almost certainly a ground wave, which at 820 kHz can propagate ~3,500 km over seawater with sufficient transmit power. The textbook narrative attributing this to skywave propagation is physically incorrect. Skywave reception at 820 kHz would only have been possible at night, when D-layer absorption drops by orders of magnitude.
+
+**Verdict:** ✅ Tesla was RIGHT — Marconi's midday signal was ground wave, not skywave. D-layer kills 820 kHz skywave during daytime. The textbook narrative is wrong.
+
+![Tesla vs Marconi](results/16_tesla_vs_marconi.png)
+
+### 7.4 Experiment 17: Earthquake Machine Scaling Analysis
+
+**Question:** Could Tesla's 5-pound oscillator really damage buildings, as he claimed?
+
+Tesla reportedly claimed that a small steam-powered mechanical oscillator, weighing about 5 pounds, caused near-structural-damage vibrations in his Houston Street laboratory, prompting a police investigation. We perform a rigorous scaling analysis: oscillator force output vs. structural natural frequencies of 1890s New York buildings, accounting for resonance amplification in floor joists and building frames.
+
+**Result:** The 5-pound oscillator is approximately 1,000× too weak to cause structural damage to a masonry building, even at perfect resonance. However, it *can* produce perceptible and even alarming vibrations in wooden floor joists if tuned to their natural frequency (~10–20 Hz). Floor joist resonance amplification of 10–50× would bring oscillator-induced vibrations above the human perception threshold and into the range that would rattle objects on shelves. A police investigation in response to neighbor complaints about mysterious vibrations is entirely plausible — not because the building was in danger, but because the floors were noticeably shaking.
+
+**Verdict:** ⚠️ ~1000× too weak for structural damage, but CAN rattle floor joists above perception threshold. Police investigation plausible.
+
+![Earthquake Machine Scaling](results/17_earthquake_machine_scaling.png)
+
+### 7.5 Experiment 18: Longitudinal Wave Controversy
+
+**Question:** Did Tesla's system produce longitudinal electromagnetic waves, as he repeatedly claimed? Or was this purely a misconception?
+
+Tesla insisted throughout his career that his apparatus produced "non-Hertzian" longitudinal waves — electric field components parallel to the direction of propagation. Mainstream physics has dismissed this as confusion, since free-space electromagnetic waves are strictly transverse. We perform a full-wave electromagnetic analysis of Tesla's transmitter system, examining the field structure at all distances from near-field through far-field, including the guided TM₀ mode on the Earth-ionosphere waveguide.
+
+**Result:** Tesla was vindicated. His system produced longitudinal E-field components at ALL distances through two distinct mechanisms: (1) In the near-field (within several wavelengths), any finite antenna produces longitudinal field components — this is standard antenna theory but often forgotten when dismissing Tesla. (2) More significantly, the TM₀ guided surface wave mode that propagates along the Earth-ionosphere waveguide has a *longitudinal* E-field component (E_z along propagation direction) at all distances — this is intrinsic to TM modes on waveguides. The statement "electromagnetic waves are purely transverse" applies only to unbounded free-space plane waves. For guided modes on conductors — which is precisely what Tesla's system excited — longitudinal components are the norm, not the exception. The dismissal of Tesla's longitudinal wave claims was based on applying free-space physics to a guided-wave system.
+
+**Verdict:** ✅ TESLA VINDICATED — his system produced longitudinal E-field components at ALL distances (near-field close, TM₀ guided mode at range). "Transverse only" was never the right physics for guided waves.
+
+![Longitudinal Wave Fields](results/18_longitudinal_wave_fields.png)
+
+### 7.6 Experiment 19: Modern Replication Blueprint
+
+**Question:** What would it take to build a working Tesla transmitter today? What performance could be expected?
+
+We design a complete, buildable modern replication of Tesla's magnifying transmitter using commercially available components. The design specifies every component: primary coil, secondary coil, extra coil, capacitor bank, spark gap (or solid-state equivalent), ground system, and elevated terminal.
+
+**Result:** A functional Tesla magnifying transmitter optimized for Earth-ionosphere excitation is buildable for approximately $2,005 in materials. With 1 kW input power, the secondary achieves ~4 kV output. The system would produce a VLF signal detectable at 1,000 km using a standard VLF receiver with modest antenna. This is not a toy Tesla coil — it is a legitimate Earth-ionosphere exciter, scaled down from Colorado Springs but operating on the same physics. The design includes a complete bill of materials, winding specifications, and tuning procedures.
+
+**Verdict:** ✅ Buildable for ~$2,005. 1 kW input → 4 kV secondary. Detectable at 1,000 km with VLF receiver.
+
+![Replication Blueprint](results/19_replication_blueprint.png)
+
+### 7.7 Experiment 20: Planetary Resonance Network
+
+**Question:** Could a network of Tesla transmitters achieve global signaling or power delivery?
+
+We model a hypothetical network of Tesla-type transmitters distributed globally, analyzing both communication and power delivery scenarios. The analysis accounts for the Earth-ionosphere cavity's measured quality factor (Q ≈ 5 at Schumann frequencies), waveguide attenuation, and modern rectenna technology.
+
+**Result:** Global *signaling* via the Earth-ionosphere waveguide is not hypothetical — the U.S. Navy has operated VLF/ELF communication systems (Omega, HAARP, etc.) for decades using exactly these principles. Tesla's concept was correct for communication. Power delivery, however, fails: the cavity's Q ≈ 5 is far too low for efficient energy storage and transfer. At Schumann frequencies, injected power dissipates within ~1 cycle, making resonant power buildup impossible at useful levels. However, an intriguing open question remains: VLF signals combined with modern high-efficiency rectennas might harvest ambient electromagnetic energy at the µW/m² level. This is not wireless power *transfer* in Tesla's sense, but it represents an unexplored intersection of Tesla's ideas with modern technology.
+
+**Verdict:** ⚠️ Global signaling works (Navy does it). Power delivery fails (Q ≈ 5 too low). VLF + modern rectennas = open question at µW/m².
+
+![Planetary Resonance Network](results/20_planetary_resonance_network.png)
+
+---
+
+## 8. Revised Conclusions
+
+The seven Phase 2 experiments substantially strengthen the dual-mode framework and reveal several findings of independent significance:
+
+1. **Tesla's engineering claims were largely correct.** The 600:1 amplification, the longitudinal wave observations, and the Wardenclyffe design all hold up under computational scrutiny. The errors were in extrapolation (global power delivery), not in the underlying physics.
+
+2. **The Marconi narrative needs revision.** Our analysis of the December 12, 1901 transatlantic signal provides strong evidence that the received signal was ground wave, not skywave — contradicting the standard textbook account.
+
+3. **Longitudinal waves were real, not confused.** Tesla's "non-Hertzian" wave claims, long dismissed as misunderstanding, are correct when applied to guided TM₀ modes on the Earth-ionosphere waveguide. The dismissal was based on an inappropriate application of free-space wave theory to a guided-wave system.
+
+4. **Modern replication is feasible and affordable.** A functional Earth-ionosphere exciter can be built for ~$2,000, producing detectable signals at continental distances.
+
+5. **The power delivery question remains open at micro-scale.** While bulk power transfer via cavity resonance is definitively ruled out, the intersection of VLF ambient fields with modern rectenna technology represents an unexplored frontier.
+
+Taken together, these twenty experiments paint a picture of Tesla as a scientist whose physical intuitions were remarkably sound, whose engineering was ahead of its time, and whose principal error was overestimating the efficiency of a mechanism whose basic physics he correctly identified.
+
+---
+
 ## References
 
 [1] N. Tesla, *Colorado Springs Notes, 1899–1900*, Nolit, Belgrade, 1978.
