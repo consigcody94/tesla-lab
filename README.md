@@ -29,6 +29,7 @@
 |--------|------|
 | 📄 **PDF Download** | [GitHub Release (v1.0.0)](https://github.com/consigcody94/tesla-lab/releases/tag/v1.0.0) |
 | 🌐 **Web Version** | [consigcody94.github.io/tesla-lab](https://consigcody94.github.io/tesla-lab/) |
+| 🎮 **Interactive 3D Twin** | [consigcody94.github.io/tesla-lab/3d.html](https://consigcody94.github.io/tesla-lab/3d.html) |
 | 📝 **Markdown** | [paper.md](paper.md) |
 | 🔗 **Zenodo DOI** | *Coming soon — [enable here](https://zenodo.org/account/settings/github/)* |
 | 📐 **arXiv** | *Submission pending — see [arxiv/README.md](arxiv/README.md)* |
@@ -111,6 +112,28 @@ We designed a modern, buildable replication of Tesla's core system using off-the
 | 18 | [**Longitudinal Waves**](experiments/18_longitudinal_wave_controversy.py) | "Non-Hertzian waves exist" | **VINDICATED — TM₀ has longitudinal E at all distances.** | ✅ |
 | 19 | [Replication Blueprint](experiments/19_modern_replication_blueprint.py) | — | Buildable for $2,005. Detectable at 1,000 km. | ✅ |
 | 20 | [Planetary Network](experiments/20_planetary_resonance_network.py) | "Wireless power for all" | Signaling works (Navy does it). Power fails (Q≈5). | ⚠️ |
+
+---
+
+## 📐 Vector Engineering Blueprints & 3D Digital Twin
+
+Publication-grade engineering blueprints derived directly from exact apparatus dimensions (Tesla 1899 notes, US Patents 1,119,732 & 787,412) and boundary-value electrodynamics. All dimensions, callouts, and mathematical formulas are rendered in vector typography (zero AI diffusion artifacts).
+
+<p align="center">
+  <a href="results/tesla_scientific_blueprint_exact.svg"><img src="results/tesla_scientific_blueprint_exact.png" width="48%" alt="Colorado Springs Magnifying Transmitter Blueprint (1899)"></a>
+  <a href="results/wardenclyffe_scientific_blueprint_exact.svg"><img src="results/wardenclyffe_scientific_blueprint_exact.png" width="48%" alt="Wardenclyffe Tower & Ground System Blueprint (1901)"></a>
+</p>
+<p align="center">
+  <em>Left: Colorado Springs Magnifying Transmitter (1899) — Elevation, RF transmission line equivalent, near-field |Er/Eθ| ratio, wave tilt, and TM₀ dispersion [<a href="results/tesla_scientific_blueprint_exact.svg">Vector SVG</a>].</em><br>
+  <em>Right: Wardenclyffe Tower (1901) — Structural elevation, 120 ft shaft, subterranean groundwater coupling, Goubau ELF surface wave decay, and transatlantic seawater propagation [<a href="results/wardenclyffe_scientific_blueprint_exact.svg">Vector SVG</a>].</em>
+</p>
+
+<p align="center">
+  <a href="https://consigcody94.github.io/tesla-lab/3d.html"><img src="https://img.shields.io/badge/🎮_Launch_Interactive_3D_Digital_Twin-00f0ff?style=for-the-badge&logoColor=black" alt="3D Model"></a>
+</p>
+<p align="center">
+  <em>Interactive WebGL/Three.js 1:1 metric scale twin featuring real-time parametric helical coils, apparatus switcher (Colorado Springs vs Wardenclyffe), animated TM₀ guided ground wavefronts, near-field electrostatic dipole loops, and live parameter telemetry.</em>
+</p>
 
 ---
 

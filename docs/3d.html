@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tesla Lab: Scientific 3D Apparatus & Waveguide Simulation</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: #050b14;
+      color: #e6f1ff;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+    #canvas-container {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    /* HUD Overlays */
+    .hud-panel {
+      position: absolute;
+      background: rgba(8, 20, 38, 0.88);
+      border: 1px solid #1c3f73;
+      border-radius: 8px;
+      padding: 16px 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+      z-index: 10;
+    }
+    #header-panel {
+      top: 20px;
+      left: 20px;
+      max-width: 440px;
+    }
+    #header-panel h1 {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #00f0ff;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    #header-panel h1 span.badge {
+      font-size: 10px;
+      background: #00f0ff22;
+      border: 1px solid #00f0ff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    #header-panel p {
+      font-size: 12px;
+      color: #88a6d4;
+      line-height: 1.4;
+    }
+    #controls-panel {
+      top: 20px;
+      right: 20px;
+      width: 320px;
+    }
+    .control-group {
+      margin-bottom: 14px;
+    }
+    .control-group:last-child { margin-bottom: 0; }
+    .control-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #ffdd55;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .btn-group {
+      display: flex;
+      gap: 6px;
+    }
+    button {
+      flex: 1;
+      background: #0d264a;
+      border: 1px solid #204c87;
+      color: #e6f1ff;
+      padding: 7px 10px;
+      border-radius: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: monospace;
+    }
+    button:hover {
+      background: #19437d;
+      border-color: #00f0ff;
+    }
+    button.active {
+      background: #00f0ff;
+      color: #050b14;
+      border-color: #00f0ff;
+      font-weight: 700;
+      box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+    }
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 12px;
+      color: #c0d3ed;
+    }
+    .toggle-row input[type="checkbox"] {
+      cursor: pointer;
+      accent-color: #00f0ff;
+    }
+    #telemetry-panel {
+      bottom: 20px;
+      left: 20px;
+      width: 440px;
+    }
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 16px;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    }
+    .telemetry-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #143058;
+      padding-bottom: 3px;
+    }
+    .telemetry-item .label { color: #88a6d4; }
+    .telemetry-item .val { color: #00f0ff; font-weight: 600; }
+    #instructions-tip {
+      bottom: 20px;
+      right: 20px;
+      font-size: 11px;
+      color: #6482ad;
+      font-family: monospace;
+      background: rgba(8, 20, 38, 0.7);
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 1px solid #143058;
+    }
+  </style>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="canvas-container"></div>
+
+  <!-- Header HUD -->
+  <div class="hud-panel" id="header-panel">
+    <h1>TESLA-LAB 3D <span class="badge">1:1 Metric Scale</span></h1>
+    <p>Digital twin derived directly from <code>experiments/13_colorado_springs_reconstruction.py</code>, <code>15_wardenclyffe_reconstruction.py</code>, and <code>19_modern_replication_blueprint.py</code>.</p>
+  </div>
+
+  <!-- Controls HUD -->
+  <div class="hud-panel" id="controls-panel">
+    <div class="control-group">
+      <span class="control-label">Select Apparatus</span>
+      <div class="btn-group">
+        <button id="btn-colorado" class="active">Colorado Springs (1899)</button>
+        <button id="btn-wardenclyffe">Wardenclyffe (1901)</button>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <span class="control-label">Physics Visualizations</span>
+      <div class="toggle-row">
+        <span>Electromagnetic Field Lines</span>
+        <input type="checkbox" id="chk-fields" checked>
+      </div>
+      <div class="toggle-row">
+        <span>Quarter-Wave Voltage Standing Wave</span>
+        <input type="checkbox" id="chk-voltage-wave" checked>
+      </div>
+      <div class="toggle-row">
+        <span>Ground Radials & Shaft</span>
+        <input type="checkbox" id="chk-ground" checked>
+      </div>
+      <div class="toggle-row">
+        <span>Dimension Reference Markers</span>
+        <input type="checkbox" id="chk-dims" checked>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <span class="control-label">View Preset</span>
+      <div class="btn-group">
+        <button id="btn-cam-orbit">Orbit View</button>
+        <button id="btn-cam-base">Coil Base</button>
+        <button id="btn-cam-elevation">Elevation</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Telemetry HUD -->
+  <div class="hud-panel" id="telemetry-panel">
+    <div class="control-label" style="margin-bottom: 8px;">CALCULATED RF & STRUCTURAL PARAMETERS</div>
+    <div class="telemetry-grid" id="telemetry-content">
+      <!-- Populated dynamically via JS -->
+    </div>
+  </div>
+
+  <div id="instructions-tip">
+    Left Click + Drag: Rotate | Right Click + Drag: Pan | Scroll: Zoom
+  </div>
+
+  <!-- Three.js App Logic -->
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // Scene, Camera, Renderer Setup
+    // ─────────────────────────────────────────────────────────────────────────
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x060e1a);
+    scene.fog = new THREE.FogExp2(0x060e1a, 0.007);
+
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(40, 25, 45);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    container.appendChild(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.target.set(0, 15, 0);
+    controls.maxPolarAngle = Math.PI / 2 + 0.1; // allow slight subterranean view
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // Lighting
+    // ─────────────────────────────────────────────────────────────────────────
+    const ambientLight = new THREE.AmbientLight(0x223a5e, 1.8);
+    scene.add(ambientLight);
+
+    const dirLight = new THREE.DirectionalLight(0xddeeff, 2.2);
+    dirLight.position.set(30, 60, 40);
+    dirLight.castShadow = true;
+    dirLight.shadow.mapSize.width = 2048;
+    dirLight.shadow.mapSize.height = 2048;
+    scene.add(dirLight);
+
+    const blueRimLight = new THREE.DirectionalLight(0x00f0ff, 1.5);
+    blueRimLight.position.set(-40, 30, -30);
+    scene.add(blueRimLight);
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // Environment: Ground Plane & Engineering Grid (1m grid cells)
+    // ─────────────────────────────────────────────────────────────────────────
+    const gridHelper = new THREE.GridHelper(120, 120, 0x00f0ff, 0x13325c);
+    gridHelper.position.y = 0;
+    scene.add(gridHelper);
+
+    const groundGeo = new THREE.PlaneGeometry(160, 160);
+    const groundMat = new THREE.MeshStandardMaterial({
+      color: 0x071322,
+      roughness: 0.9,
+      metalness: 0.1,
+      transparent: true,
+      opacity: 0.85
+    });
+    const groundMesh = new THREE.Mesh(groundGeo, groundMat);
+    groundMesh.rotation.x = -Math.PI / 2;
+    groundMesh.receiveShadow = true;
+    scene.add(groundMesh);
+
+    // Subterranean Ground Layer Visualization
+    const subGroundGroup = new THREE.Group();
+    scene.add(subGroundGroup);
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // Colorado Springs Magnifying Transmitter Apparatus Construction
+    // Exact Dimensions from experiments/13_colorado_springs_reconstruction.py
+    // ─────────────────────────────────────────────────────────────────────────
+    const csGroup = new THREE.Group();
+    scene.add(csGroup);
+
+    // Materials
+    const copperMat = new THREE.MeshStandardMaterial({
+      color: 0xe58b44,
+      metalness: 0.85,
+      roughness: 0.25,
+      wireframe: false
+    });
+    const primaryStripMat = new THREE.MeshStandardMaterial({
+      color: 0xffaa33,
+      metalness: 0.9,
+      roughness: 0.2
+    });
+    const extraCoilMat = new THREE.MeshStandardMaterial({
+      color: 0xff00d4,
+      metalness: 0.5,
+      roughness: 0.3,
+      emissive: 0x330022
+    });
+    const woodMat = new THREE.MeshStandardMaterial({
+      color: 0x4a3728,
+      roughness: 0.8,
+      metalness: 0.05
+    });
+    const sphereMat = new THREE.MeshStandardMaterial({
+      color: 0xf5d77f,
+      metalness: 0.95,
+      roughness: 0.15,
+      emissive: 0x221a00
+    });
+
+    // 1. Primary Coil: 15.54m diameter (7.77m radius), 1.5 turns heavy copper ribbon
+    const primRadius = 7.77;
+    const primHeight = 1.2;
+    const primGeo = new THREE.CylinderGeometry(primRadius, primRadius, primHeight, 64, 1, true);
+    const primMesh = new THREE.Mesh(primGeo, primaryStripMat);
+    primMesh.position.y = primHeight / 2;
+    csGroup.add(primMesh);
+
+    // Primary Fence Wooden Posts (16 perimeter posts)
+    for (let i = 0; i < 16; i++) {
+      const angle = (i / 16) * Math.PI * 2;
+      const postGeo = new THREE.BoxGeometry(0.15, primHeight + 0.3, 0.15);
+      const post = new THREE.Mesh(postGeo, woodMat);
+      post.position.set(Math.cos(angle) * (primRadius + 0.1), (primHeight + 0.3)/2, Math.sin(angle) * (primRadius + 0.1));
+      csGroup.add(post);
+    }
+
+    // 2. Secondary Conical Resonator: Base dia 1.83m (r=0.915m), Top dia 0.61m (r=0.305m), H=3.05m
+    const secH = 3.05;
+    const secRBase = 0.915;
+    const secRTop = 0.305;
+    const secFrameGeo = new THREE.ConeGeometry(secRBase, secH, 32, 1, true);
+    // In Three.js, cone base is at bottom if adjusted:
+    const secFormGeo = new THREE.CylinderGeometry(secRTop, secRBase, secH, 32, 1, true);
+    const secFormMat = new THREE.MeshStandardMaterial({
+      color: 0x0c3156,
+      transparent: true,
+      opacity: 0.45,
+      wireframe: true
+    });
+    const secForm = new THREE.Mesh(secFormGeo, secFormMat);
+    secForm.position.y = secH / 2;
+    csGroup.add(secForm);
+
+    // Secondary 3D Helical Coil Turns (100 turns sampled along conical spiral)
+    const secTurns = 60; // visually dense representation
+    const secCurvePoints = [];
+    for (let i = 0; i <= 600; i++) {
+      const t = i / 600;
+      const angle = t * Math.PI * 2 * secTurns;
+      const r = secRBase + (secRTop - secRBase) * t;
+      const y = t * secH;
+      secCurvePoints.push(new THREE.Vector3(Math.cos(angle) * r, y, Math.sin(angle) * r));
+    }
+    const secCurve = new THREE.CatmullRomCurve3(secCurvePoints);
+    const secTubeGeo = new THREE.TubeGeometry(secCurve, 500, 0.015, 6, false);
+    const secTube = new THREE.Mesh(secTubeGeo, copperMat);
+    csGroup.add(secTube);
+
+    // 3. Elevated Extra Coil (L3): Dia 0.762m (r=0.381m), H=2.44m, positioned above secondary
+    const extraStartH = secH + 0.6;
+    const extraH = 2.438;
+    const extraR = 0.381;
+    const extraFormGeo = new THREE.CylinderGeometry(extraR, extraR, extraH, 32, 1, true);
+    const extraFormMat = new THREE.MeshStandardMaterial({
+      color: 0x22052b,
+      transparent: true,
+      opacity: 0.4,
+      wireframe: true
+    });
+    const extraForm = new THREE.Mesh(extraFormGeo, extraFormMat);
+    extraForm.position.y = extraStartH + extraH / 2;
+    csGroup.add(extraForm);
+
+    // Extra Coil 3D Helix (Quarter-wave slow-wave transmission line)
+    const extraTurns = 50;
+    const extraCurvePoints = [];
+    for (let i = 0; i <= 500; i++) {
+      const t = i / 500;
+      const angle = t * Math.PI * 2 * extraTurns;
+      const y = extraStartH + t * extraH;
+      extraCurvePoints.push(new THREE.Vector3(Math.cos(angle) * extraR, y, Math.sin(angle) * extraR));
+    }
+    const extraCurve = new THREE.CatmullRomCurve3(extraCurvePoints);
+    const extraTubeGeo = new THREE.TubeGeometry(extraCurve, 400, 0.012, 6, false);
+    const extraTube = new THREE.Mesh(extraTubeGeo, extraCoilMat);
+    csGroup.add(extraTube);
+
+    // 4. Central Mast & Guy Wires: Total Height 43.28m (142 ft)
+    const mastTotalH = 43.28;
+    const mastGeo = new THREE.CylinderGeometry(0.12, 0.35, mastTotalH - (extraStartH + extraH), 16);
+    const mastMesh = new THREE.Mesh(mastGeo, woodMat);
+    mastMesh.position.y = (extraStartH + extraH + mastTotalH) / 2;
+    csGroup.add(mastMesh);
+
+    // Guy Wires (4 diagonal lines anchoring mast to ground)
+    const wireMat = new THREE.LineBasicMaterial({ color: 0x5a789e, transparent: true, opacity: 0.7 });
+    for (let i = 0; i < 4; i++) {
+      const angle = (i / 4) * Math.PI * 2 + Math.PI / 4;
+      const anchorR = 18.0;
+      const wireGeo = new THREE.BufferGeometry().setFromPoints([
+        new THREE.Vector3(0, mastTotalH * 0.7, 0),
+        new THREE.Vector3(Math.cos(angle) * anchorR, 0, Math.sin(angle) * anchorR)
+      ]);
+      const wire = new THREE.Line(wireGeo, wireMat);
+      csGroup.add(wire);
+    }
+
+    // 5. Top Terminal Sphere: 0.762m diameter (r = 0.381m) at 43.28m
+    const sphereGeo = new THREE.SphereGeometry(0.381, 32, 32);
+    const sphereMesh = new THREE.Mesh(sphereGeo, sphereMat);
+    sphereMesh.position.y = mastTotalH;
+    csGroup.add(sphereMesh);
+
+    // Corona / Glow Halo around sphere
+    const glowGeo = new THREE.SphereGeometry(0.55, 16, 16);
+    const glowMat = new THREE.MeshBasicMaterial({
+      color: 0x00f0ff,
+      transparent: true,
+      opacity: 0.25,
+      wireframe: true
+    });
+    const glowMesh = new THREE.Mesh(glowGeo, glowMat);
+    glowMesh.position.y = mastTotalH;
+    csGroup.add(glowMesh);
+
+    // 6. Subterranean Ground Electrode & 120 Radials
+    const groundDepth = 12.0;
+    const electrodeGeo = new THREE.CylinderGeometry(0.15, 0.15, groundDepth, 16);
+    const electrodeMat = new THREE.MeshStandardMaterial({ color: 0x00f0ff, metalness: 0.9, roughness: 0.2 });
+    const electrode = new THREE.Mesh(electrodeGeo, electrodeMat);
+    electrode.position.y = -groundDepth / 2;
+    subGroundGroup.add(electrode);
+
+    // 120 Ground Radials spreading out 35m underground
+    const radialLinesMat = new THREE.LineBasicMaterial({ color: 0x1d6396, transparent: true, opacity: 0.5 });
+    const radialPts = [];
+    for (let i = 0; i < 60; i++) { // 60 radial lines for visual clarity
+      const angle = (i / 60) * Math.PI * 2;
+      const r = 30.0;
+      const depth = 1.5;
+      radialPts.push(new THREE.Vector3(0, -0.2, 0));
+      radialPts.push(new THREE.Vector3(Math.cos(angle) * r, -depth, Math.sin(angle) * r));
+    }
+    const radialsGeo = new THREE.BufferGeometry().setFromPoints(radialPts);
+    const radials = new THREE.LineSegments(radialsGeo, radialLinesMat);
+    subGroundGroup.add(radials);
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // Wardenclyffe Tower Construction (Patents US 1,119,732 & US 787,412)
+    // Exact Dimensions from experiments/15_wardenclyffe_reconstruction.py:
+    // Height: 57.0 m (187 ft), Cupola Dome Dia: 20.7 m (68 ft), Shaft Depth: 36.6 m (120 ft)
+    // ─────────────────────────────────────────────────────────────────────────
+    const wardenclyffeGroup = new THREE.Group();
+    wardenclyffeGroup.visible = false;
+    scene.add(wardenclyffeGroup);
+
+    // Octagonal timber lattice tower (57m height, tapering from 29m base to 11m top)
+    const towerH = 57.0;
+    const baseR = 14.5;
+    const topR = 5.5;
+    const towerGeo = new THREE.CylinderGeometry(topR, baseR, towerH, 8, 12, true);
+    const towerMat = new THREE.MeshStandardMaterial({
+      color: 0x5a422d,
+      wireframe: true,
+      roughness: 0.9
+    });
+    const towerMesh = new THREE.Mesh(towerGeo, towerMat);
+    towerMesh.position.y = towerH / 2;
+    wardenclyffeGroup.add(towerMesh);
+
+    // Internal vertical elevator/stairwell shaft
+    const shaftGeo = new THREE.CylinderGeometry(1.8, 1.8, towerH, 12);
+    const shaftMat = new THREE.MeshStandardMaterial({ color: 0x2e2116, roughness: 0.95 });
+    const shaftMesh = new THREE.Mesh(shaftGeo, shaftMat);
+    shaftMesh.position.y = towerH / 2;
+    wardenclyffeGroup.add(shaftMesh);
+
+    // Hemispherical / Toroidal Cupola (20.7m diameter = 10.35m radius)
+    const domeR = 10.35;
+    const domeGeo = new THREE.SphereGeometry(domeR, 32, 16, 0, Math.PI * 2, 0, Math.PI * 0.65);
+    const domeMat = new THREE.MeshStandardMaterial({
+      color: 0xd4af37,
+      metalness: 0.9,
+      roughness: 0.2,
+      wireframe: true
+    });
+    const domeMesh = new THREE.Mesh(domeGeo, domeMat);
+    domeMesh.position.y = towerH + 2.0;
+    wardenclyffeGroup.add(domeMesh);
+
+    // Deep Subterranean Ground Well: 36.6m depth
+    const wGroundDepth = 36.6;
+    const wWellGeo = new THREE.CylinderGeometry(2.0, 2.0, wGroundDepth, 16, 1, true);
+    const wWellMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff, wireframe: true });
+    const wWell = new THREE.Mesh(wWellGeo, wWellMat);
+    wWell.position.y = -wGroundDepth / 2;
+    wardenclyffeGroup.add(wWell);
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // Electromagnetic Field Visualizer:
+    // 1. Near-field radial electrostatic dipole loops (E_r ~ 1/r³)
+    // 2. Guided TM₀ surface wave expanding along ground with wave tilt ψ
+    // ─────────────────────────────────────────────────────────────────────────
+    const fieldLinesGroup = new THREE.Group();
+    scene.add(fieldLinesGroup);
+
+    // Static dipole loop curves from top terminal to ground
+    const fieldLines = [];
+    const nLoops = 12;
+    for (let i = 0; i < nLoops; i++) {
+      const phi = (i / nLoops) * Math.PI * 2;
+      const pts = [];
+      const reachR = 24.0;
+      for (let s = 0; s <= 50; s++) {
+        const u = s / 50; // 0 to 1
+        // Dipole field line equation in spherical/cylindrical: r = r0 * sin^2(theta)
+        const theta = u * Math.PI * 0.75;
+        const r = reachR * Math.sin(theta)**1.5;
+        const y = mastTotalH * Math.cos(theta);
+        const x = Math.cos(phi) * r;
+        const z = Math.sin(phi) * r;
+        pts.push(new THREE.Vector3(x, Math.max(0, y), z));
+      }
+      const lineGeo = new THREE.BufferGeometry().setFromPoints(pts);
+      const lineMat = new THREE.LineBasicMaterial({
+        color: 0x00f0ff,
+        transparent: true,
+        opacity: 0.45
+      });
+      const line = new THREE.Line(lineGeo, lineMat);
+      fieldLinesGroup.add(line);
+      fieldLines.push(line);
+    }
+
+    // Expanding TM₀ Ground Wavefront Rings (concentric expanding rings)
+    const waveRings = [];
+    const nRings = 6;
+    for (let i = 0; i < nRings; i++) {
+      const ringGeo = new THREE.RingGeometry(1, 1.4, 64);
+      const ringMat = new THREE.MeshBasicMaterial({
+        color: 0x00f0ff,
+        transparent: true,
+        opacity: 0.6,
+        side: THREE.DoubleSide
+      });
+      const ring = new THREE.Mesh(ringGeo, ringMat);
+      ring.rotation.x = -Math.PI / 2;
+      ring.position.y = 0.1;
+      fieldLinesGroup.add(ring);
+      waveRings.push({ mesh: ring, phase: i / nRings });
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // Dimension Callouts (3D Markers)
+    // ─────────────────────────────────────────────────────────────────────────
+    const dimsGroup = new THREE.Group();
+    scene.add(dimsGroup);
+
+    function createDimLine(start, end, labelText) {
+      const g = new THREE.Group();
+      const pts = [start, end];
+      const lineGeo = new THREE.BufferGeometry().setFromPoints(pts);
+      const lineMat = new THREE.LineDashedMaterial({ color: 0xffdd55, dashSize: 0.6, gapSize: 0.3 });
+      const line = new THREE.Line(lineGeo, lineMat);
+      line.computeLineDistances();
+      g.add(line);
+
+      // Create Canvas Text Sprite
+      const canvas = document.createElement('canvas');
+      canvas.width = 256;
+      canvas.height = 64;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffdd55';
+      ctx.font = 'bold 24px monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(labelText, 128, 32);
+
+      const texture = new THREE.CanvasTexture(canvas);
+      const spriteMat = new THREE.SpriteMaterial({ map: texture, transparent: true });
+      const sprite = new THREE.Sprite(spriteMat);
+      sprite.position.copy(start).add(end).multiplyScalar(0.5);
+      sprite.position.x += 1.5;
+      sprite.scale.set(6, 1.5, 1);
+      g.add(sprite);
+
+      return g;
+    }
+
+    // CS Dimensions
+    const csDims = new THREE.Group();
+    csDims.add(createDimLine(new THREE.Vector3(-R_primary, 0.5, 0), new THREE.Vector3(R_primary, 0.5, 0), "DIA: 15.54m (51ft)"));
+    csDims.add(createDimLine(new THREE.Vector3(-10, 0, 0), new THREE.Vector3(-10, mastTotalH, 0), "H: 43.28m (142ft)"));
+    csDims.add(createDimLine(new THREE.Vector3(0, -groundDepth, 0), new THREE.Vector3(0, 0, 0), "DEPTH: 10m"));
+    dimsGroup.add(csDims);
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // Telemetry Display Updating
+    // ─────────────────────────────────────────────────────────────────────────
+    const telemetryContainer = document.getElementById('telemetry-content');
+    const csTelemetry = [
+      { label: 'Primary Inductance (L1)', val: '33.0 µH (1.5 turns)' },
+      { label: 'Primary Diameter (D1)', val: '15.54 m (51.0 ft)' },
+      { label: 'Secondary Inductance (L2)', val: '19.5 mH (100 turns)' },
+      { label: 'Extra Coil Inductance (L3)', val: '21.4 mH (100 turns)' },
+      { label: 'Top Load Capacitance (C_iso)', val: '42.4 pF (0.762m Sphere)' },
+      { label: 'Resonant Frequency (f0)', val: '150.0 kHz (λ = 2000m)' },
+      { label: 'Electrical Quarter-Wave', val: '500 m (Slow-wave helix)' },
+      { label: 'Voltage Amplification (Av)', val: '124× (~12 MV Peak)' },
+      { label: 'TM0 Forward Wave Tilt (ψ)', val: '5.21° (at σ = 1 mS/m)' },
+      { label: 'Radiation Resistance (Rr)', val: '0.046 Ω (Monopole)' }
+    ];
+
+    const wTelemetry = [
+      { label: 'Tower Structure Height', val: '57.0 m (187.0 ft)' },
+      { label: 'Cupola Dome Diameter', val: '20.7 m (68.0 ft)' },
+      { label: 'Dome Top Capacitance', val: '~20.0 pF (68ft Toroid)' },
+      { label: 'Ground Shaft Depth', val: '36.6 m (120 ft shaft)' },
+      { label: 'Radial Earth Ground Pipes', val: '16 Iron Pipes to 300ft' },
+      { label: 'Operating Band', val: 'LF / VLF (~150 kHz)' },
+      { label: 'Guided Mode Excited', val: 'TM0 Waveguide Mode' },
+      { label: 'Earth-Ionosphere Coupling', val: 'Dual-Mode (TM0 + Schumann)' }
+    ];
+
+    function updateTelemetry(data) {
+      telemetryContainer.innerHTML = '';
+      data.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'telemetry-item';
+        div.innerHTML = `<span class="label">${item.label}</span><span class="val">${item.val}</span>`;
+        telemetryContainer.appendChild(div);
+      });
+    }
+    updateTelemetry(csTelemetry);
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // UI Event Listeners
+    // ─────────────────────────────────────────────────────────────────────────
+    const btnCS = document.getElementById('btn-colorado');
+    const btnW = document.getElementById('btn-wardenclyffe');
+
+    btnCS.addEventListener('click', () => {
+      btnCS.classList.add('active');
+      btnW.classList.remove('active');
+      csGroup.visible = true;
+      wardenclyffeGroup.visible = false;
+      csDims.visible = true;
+      updateTelemetry(csTelemetry);
+    });
+
+    btnW.addEventListener('click', () => {
+      btnW.classList.add('active');
+      btnCS.classList.remove('active');
+      csGroup.visible = false;
+      wardenclyffeGroup.visible = true;
+      csDims.visible = false;
+      updateTelemetry(wTelemetry);
+    });
+
+    document.getElementById('chk-fields').addEventListener('change', (e) => {
+      fieldLinesGroup.visible = e.target.checked;
+    });
+
+    document.getElementById('chk-ground').addEventListener('change', (e) => {
+      subGroundGroup.visible = e.target.checked;
+    });
+
+    document.getElementById('chk-dims').addEventListener('change', (e) => {
+      dimsGroup.visible = e.target.checked;
+    });
+
+    // Camera Presets
+    document.getElementById('btn-cam-orbit').addEventListener('click', () => {
+      camera.position.set(40, 25, 45);
+      controls.target.set(0, 15, 0);
+    });
+    document.getElementById('btn-cam-base').addEventListener('click', () => {
+      camera.position.set(12, 4, 12);
+      controls.target.set(0, 2, 0);
+    });
+    document.getElementById('btn-cam-elevation').addEventListener('click', () => {
+      camera.position.set(0, 22, 65);
+      controls.target.set(0, 22, 0);
+    });
+
+    // Window Resize
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // Animation Loop
+    // ─────────────────────────────────────────────────────────────────────────
+    const clock = new THREE.Clock();
+    function animate() {
+      requestAnimationFrame(animate);
+      const elapsed = clock.getElapsedTime();
+
+      // Pulse top sphere corona glow
+      const pulse = 1.0 + 0.15 * Math.sin(elapsed * 8.0);
+      glowMesh.scale.set(pulse, pulse, pulse);
+
+      // Animate TM0 Ground Wavefronts propagating outward
+      const maxRingRadius = 55.0;
+      waveRings.forEach(r => {
+        r.phase = (r.phase + 0.004) % 1.0;
+        const currentR = 2.0 + r.phase * (maxRingRadius - 2.0);
+        r.mesh.geometry.dispose();
+        r.mesh.geometry = new THREE.RingGeometry(currentR, currentR + 0.8, 64);
+        // Fade out as it expands outward (geometric spreading ~1/r)
+        r.mesh.material.opacity = (1.0 - r.phase) * 0.7;
+      });
+
+      // Subtle rotation of extra coil glow
+      extraTube.material.emissiveIntensity = 0.5 + 0.3 * Math.sin(elapsed * 6.0);
+
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+</body>
+</html>
